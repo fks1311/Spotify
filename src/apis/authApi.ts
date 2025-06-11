@@ -28,7 +28,6 @@ export const getClientCredentialToken = async (): Promise<IClientCredentialToken
     const response = await axios.post("https://accounts.spotify.com/api/token", body, headers);
     return response.data;
   } catch (error) {
-    console.log("getClientCredentialToken", error);
     throw new Error("Fail to fetch Spotify Client Token");
   }
 };
@@ -52,10 +51,8 @@ export const exchageToken = async (code: string, codeVerifier: string): Promise<
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
-    console.log(response);
     return response.data;
   } catch (error) {
-    console.log("exchageToken", error);
     throw new Error("Fail to fetch Token");
   }
 };
