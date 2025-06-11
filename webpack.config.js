@@ -69,7 +69,7 @@ module.exports = (env, argv) => {
     },
     devtool: isProduction ? "source-map" : "inline-source-map",
     devServer: {
-      port: 3000, // 포트 설정
+      port: 3001, // 포트 설정
       open: true,
       hot: true,
       historyApiFallback: true,
