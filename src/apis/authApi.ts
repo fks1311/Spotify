@@ -12,7 +12,7 @@ const encodedBase64 = (data: string): string => {
   }
 };
 
-// Spotify에서 제공하는 Token을 가져옵니다.
+/** Spotify API : Spotify에서 제공하는 Token을 요청합니다. */
 export const getClientCredentialToken = async (): Promise<IClientCredentialTokenResponse> => {
   try {
     const body = new URLSearchParams({
