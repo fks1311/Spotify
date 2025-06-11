@@ -1,4 +1,4 @@
-import NewReleases from "../../components/homepage/NewReleases";
+import NewReleases from "../../layout/homepage/NewReleases";
 
 const HomePage = () => {
   return (
