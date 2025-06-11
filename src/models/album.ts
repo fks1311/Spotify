@@ -1,6 +1,7 @@
 import { Artist } from "./artist";
 import { ExternalURLs, Image, Restrictions } from "./commonType";
 
+/** Spotify 발매 목록 요청 API 응답값 */
 export interface IGetNewReleasesResponse {
   albums: {
     href: string;

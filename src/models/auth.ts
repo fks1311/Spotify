@@ -1,10 +1,11 @@
+/** Spotify Client Credential Token API 응답값 */
 export interface IClientCredentialTokenResponse {
   access_token: string;
   token_type: string;
   expires_in: number;
 }
 
-// spotify PKCE의 params
+/** spotify PKCE의 params */
 export interface AuthUrlParams {
   response_type: "code";
   client_id: string;
