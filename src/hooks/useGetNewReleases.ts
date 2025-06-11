@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getNewReleases } from "../apis/albumApi";
 import { useClientCredentialToken } from "./useClientCredentialToken";
 
+/** 앨범 발매 목록을 가져오는 커스텀 훅입니다.  */
 export const useGetNewReleases = () => {
   const clientCredentialToken = useClientCredentialToken();
 
