@@ -3,7 +3,7 @@ import { REDIRECT_URI } from "../configs/commonConfig";
 import { AuthUrlParams } from "../models/auth";
 import { base64encode, generateRandomString, sha256 } from "./encrypt";
 
-/**  Spotify에서 제공해주는 PKCE(인증 코드 플로우) 승인 코드 튜토리얼 : 즉, Spotify 로그인위한 주소를 엽니다. */
+/** Spotify에서 사용자 권한을 요청합니다. */
 export const getSpotifyAuthUrl = async () => {
   const codeVerifier = generateRandomString(64);
   const hashed = await sha256(codeVerifier);
