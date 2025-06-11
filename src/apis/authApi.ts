@@ -1,6 +1,6 @@
 import axios from "axios";
-import { clientId, clientSecret } from "../configs/authConfig";
 import { IClientCredentialTokenResponse } from "../models/auth";
+import { CLIENT_ID, CLIENT_SECRET } from "../configs/authConfig";
 
 const encodedBase64 = (data: string): string => {
   if (typeof window !== "undefined") {
@@ -12,6 +12,7 @@ const encodedBase64 = (data: string): string => {
   }
 };
 
+// Spotify에서 제공하는 Token을 가져옵니다.
 export const getClientCredentialToken = async (): Promise<IClientCredentialTokenResponse> => {
   try {
     const body = new URLSearchParams({
@@ -19,7 +20,7 @@ export const getClientCredentialToken = async (): Promise<IClientCredentialToken
     });
     const headers = {
       headers: {
-        Authorization: `Basic ${encodedBase64(clientId + ":" + clientSecret)}`,
+        Authorization: `Basic ${encodedBase64(CLIENT_ID + ":" + CLIENT_SECRET)}`,
         "Content-Type": "application/x-www-form-urlencoded",
       },
     };
