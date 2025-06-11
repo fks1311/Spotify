@@ -17,13 +17,13 @@ export const getClientCredentialToken = async (): Promise<IClientCredentialToken
     const body = new URLSearchParams({
       grant_type: "client_credentials",
     });
-    const response = await axios.post("https://accounts.spotify.com/api/token", body, {
+    const headers = {
       headers: {
         Authorization: `Basic ${encodedBase64(clientId + ":" + clientSecret)}`,
         "Content-Type": "application/x-www-form-urlencoded",
       },
-    });
-    console.log(response);
+    };
+    const response = await axios.post("https://accounts.spotify.com/api/token", body, headers);
     return response.data;
   } catch (error) {
     console.log(error);
