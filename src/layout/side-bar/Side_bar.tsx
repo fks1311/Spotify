@@ -39,6 +39,7 @@ const Sidebar = styled("div")(({ theme }) => ({
   height: "100%",
   display: "flex",
   flexDirection: "column",
+  gap: "8px",
   [theme.breakpoints.down("sm")]: {
     display: "none",
   },
@@ -50,8 +51,6 @@ const ContentBox = styled(Box)(({ theme }) => ({
   color: theme.palette.text.primary,
   width: "100%",
   padding: "8px",
-  marginBottom: "8px",
-  marginRight: "8px",
 }));
 
 const NavList = styled("ul")({
