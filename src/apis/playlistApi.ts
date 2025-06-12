@@ -10,7 +10,6 @@ export const getCurrentUserPlaylists = async ({
     const response = await api.get("/me/playlists", {
       params: { limit, offset },
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     throw new Error("fail to fetch current user playlists.");
