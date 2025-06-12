@@ -1,17 +1,10 @@
+import { ApiResponse } from "./apiResponse";
 import { Artist } from "./artist";
 import { ExternalURLs, Image, Restrictions } from "./commonType";
 
 /** Spotify 발매 목록 요청 API 응답값 */
 export interface IGetNewReleasesResponse {
-  albums: {
-    href: string;
-    limit: number;
-    next: string | null;
-    offset: number;
-    previous: string | null;
-    total: number;
-    items: SimplifiedAlbumObject[];
-  };
+  albums: ApiResponse<SimplifiedAlbumObject>;
 }
 
 export interface SimplifiedAlbumObject {
