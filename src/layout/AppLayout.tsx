@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import { Outlet } from "react-router";
 import Navbar from "./Navbar";
-import Side_bar from "./side-bar/Side_bar";
+import Side_bar from "./Side_bar";
 
 const AppLayout = () => {
   return (
