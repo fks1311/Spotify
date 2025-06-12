@@ -32,7 +32,7 @@ export const getClientCredentialToken = async (): Promise<IClientCredentialToken
   }
 };
 
-/** 부여된 권한 코드를 액세스 토큰으로 교환합니다. */
+/** Spotify : 부여된 권한 코드를 액세스 토큰으로 교환합니다. */
 export const exchageToken = async (code: string, codeVerifier: string): Promise<ExchageTokenResponse> => {
   try {
     const url = "https://accounts.spotify.com/api/token";

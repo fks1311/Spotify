@@ -1,0 +1,18 @@
+import { GetCurrentUserPlaylistRequest, GetCurrentUserPlaylistResponse } from "../models/playlist";
+import { api } from "../utils/api";
+
+/** Spotiry : 플레이리스트 목록을 가져옵니다. */
+export const getCurrentUserPlaylists = async ({
+  limit,
+  offset,
+}: GetCurrentUserPlaylistRequest): Promise<GetCurrentUserPlaylistResponse> => {
+  try {
+    const response = await api.get("/me/playlists", {
+      params: { limit, offset },
+    });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw new Error("fail to fetch current user playlists.");
+  }
+};
