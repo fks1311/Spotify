@@ -34,11 +34,16 @@ export const getPlaylist = async (params: GetPlaylistRequest): Promise<PlaylistR
   }
 };
 
-export const getPlaylistItems = async (params: GetPlaylistItemsRequest): Promise<GetPlaylistItemsResponse> => {
+export const getPlaylistItems = async ({
+  playlist_id,
+  limit,
+  offset,
+}: GetPlaylistItemsRequest): Promise<GetPlaylistItemsResponse> => {
   try {
-    const response = await api.get(`/playlists/${params.playlist_id}/tracks`, {
-      params,
+    const response = await api.get(`/playlists/${playlist_id}/tracks`, {
+      params: { limit, offset },
     });
+    console.log(response);
     return response.data;
   } catch (error) {
     throw new Error("fail to fetch playlist items");
