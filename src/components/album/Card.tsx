@@ -56,7 +56,7 @@ const AlbumImg = styled("img")({
   borderRadius: "8px",
 });
 
-const EllipsisTypography = styled(Typography)({
+export const EllipsisTypography = styled(Typography)({
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
