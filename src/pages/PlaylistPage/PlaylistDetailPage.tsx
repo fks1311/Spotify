@@ -1,12 +1,21 @@
 import { Avatar, Box, styled, Typography } from "@mui/material";
 import { useGetPlaylist } from "../../hooks/useGetPlaylist";
 import { Navigate, useParams } from "react-router";
+import { useGetPlaylistItems } from "../../hooks/useGetPlaylistItems";
 
 const PlaylistDetailPage = () => {
   const { id } = useParams<{ id: string }>();
 
   if (id === undefined) return <Navigate to="/" />;
-  const { data: playlist } = useGetPlaylist({ playlist_id: id });
+  const { data: playlist, isLoading: isPlaylistLoading } = useGetPlaylist({ playlist_id: id });
+  const {
+    data: playlistItems,
+    isLoading: isPlaylistItemsLoading,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useGetPlaylistItems({ playlist_id: id, limit: 10, offset: 0 });
+  console.log(playlistItems);
 
   return (
     <Container>
