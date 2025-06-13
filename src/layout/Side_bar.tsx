@@ -57,6 +57,9 @@ const NavList = styled("ul")({
   listStyle: "none",
   padding: 0,
   margin: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: "1rem",
 });
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
@@ -64,6 +67,7 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: "20px",
+  padding: "5px",
   color: theme.palette.text.secondary,
   "&:hover": { color: theme.palette.text.primary },
   ".active": { color: theme.palette.text.primary },
