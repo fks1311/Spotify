@@ -69,7 +69,7 @@ const PlaylistDetailPage = () => {
               })
             )}
             <TableRow sx={{ height: "5px" }} ref={ref} />
-            {isFetchingNextPage && <LoadingSpinner />}
+            {isFetchingNextPage && "Loading more..."}
           </TableBody>
         </Table>
       )}

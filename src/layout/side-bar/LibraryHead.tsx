@@ -1,10 +1,12 @@
 import { Box, styled, Typography, Button } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AddIcon from "@mui/icons-material/Add";
+import { useCreatePlaylist } from "../../hooks/useCreatePlaylist";
 
 const LibraryHead = () => {
+  const { mutate: createPlaylist } = useCreatePlaylist();
   const handleCreatePlaylist = () => {
-    // 나중에 추가 예정
+    createPlaylist({ name: "나의 플레이 리스트" });
   };
 
   return (
