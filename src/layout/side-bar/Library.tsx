@@ -4,15 +4,26 @@ import PlaylistItem from "../../components/playlist/PlaylistItem";
 import { useGetCurrentUserPlaylists } from "../../hooks/useGetCurrentUserPlaylists";
 import { getLocalStorageSafe } from "../../utils/localStorage";
 import EmptyPlaylist from "./EmptyPlaylist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 interface ContainerProps {
   isMouseOver: boolean;
 }
 const Library = () => {
+  const { ref, inView } = useInView();
   const accessToken = getLocalStorageSafe("access_token");
-  const { isLoading, data } = useGetCurrentUserPlaylists({ limit: 50, offset: 0 });
+  const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetCurrentUserPlaylists({
+    limit: 10,
+    offset: 0,
+  });
   const [mouseOver, setMouseOver] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -20,7 +31,16 @@ const Library = () => {
 
   return (
     <Container isMouseOver={mouseOver} onMouseOver={() => setMouseOver(true)} onMouseOut={() => setMouseOver(false)}>
-      {!accessToken || !data || data?.total === 0 ? <EmptyPlaylist /> : <PlaylistItem items={data.items} />}
+      {!accessToken || !data || data?.pages[0].total === 0 ? (
+        <EmptyPlaylist />
+      ) : (
+        <div>
+          {data?.pages.map((page, idx) => (
+            <PlaylistItem key={idx} items={page.items} />
+          ))}
+          <div ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</div>
+        </div>
+      )}
     </Container>
   );
 };

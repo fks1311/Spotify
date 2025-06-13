@@ -1,4 +1,4 @@
-import { Avatar, Box, styled, Typography } from "@mui/material";
+import { Avatar, Box, styled } from "@mui/material";
 import { SimplifiedPlaylistObject } from "../../models/playlist";
 import { EllipsisTypography } from "../album/Card";
 
@@ -32,7 +32,7 @@ const Container = styled("div")({
 const ItemBox = styled(Box)(({ theme }) => ({
   display: "flex",
   gap: "1rem",
-  padding: "0.5rem",
+  padding: "1rem",
   borderRadius: "8px",
   "&:hover": {
     backgroundColor: theme.palette.action.hover,
