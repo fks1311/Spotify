@@ -2,11 +2,18 @@ import { Box, styled, Typography, Button } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AddIcon from "@mui/icons-material/Add";
 import { useCreatePlaylist } from "../../hooks/useCreatePlaylist";
+import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
+import { getSpotifyAuthUrl } from "../../utils/getSpotifyAuthUrl";
 
 const LibraryHead = () => {
+  const { data: userProfile } = useGetCurrentUserProfile();
   const { mutate: createPlaylist } = useCreatePlaylist();
   const handleCreatePlaylist = () => {
-    createPlaylist({ name: "나의 플레이 리스트" });
+    if (userProfile) {
+      createPlaylist({ name: "나의 플레이 리스트" });
+    } else {
+      getSpotifyAuthUrl();
+    }
   };
 
   return (

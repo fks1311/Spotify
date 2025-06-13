@@ -17,7 +17,8 @@ import DesktopPlaylistItem from "../../components/playlist/DesktopPlaylistItem";
 import { PAGE_LIMIT } from "../../configs/commonConfig";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import { LoadingSpinner } from "../../components/LoadingSpinner";
+import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
+import LoginButton from "../../components/LoginButton";
 
 const PlaylistDetailPage = () => {
   const { ref, inView } = useInView({
@@ -25,6 +26,7 @@ const PlaylistDetailPage = () => {
   });
   const { id } = useParams<{ id: string }>();
   if (id === undefined) return <Navigate to="/" />;
+  const { data: user } = useGetCurrentUserProfile();
   const { data: playlist, isLoading: isPlaylistLoading } = useGetPlaylist({ playlist_id: id });
   const {
     data: playlistItems,
@@ -42,36 +44,47 @@ const PlaylistDetailPage = () => {
 
   return (
     <StyledTableContainer>
-      <PlaylistHeader>
-        <LargeAvarta src={playlist?.images?.[0]?.url} variant="rounded" />
-        <div>
-          <LargeTypography>{playlist?.name}</LargeTypography>
-          <Typography variant="h1">{playlist?.owner?.display_name}</Typography>
-        </div>
-      </PlaylistHeader>
-      {playlist?.tracks?.total === 0 ? (
-        <Typography>Search</Typography>
+      {user === undefined ? (
+        <ReqLoginBox>
+          <Typography variant="h2" fontWeight={700} mb="20px">
+            다시 로그인 하세요
+          </Typography>
+          <LoginButton />
+        </ReqLoginBox>
       ) : (
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Album</TableCell>
-              <TableCell>Date added</TableCell>
-              <TableCell>Duration</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {playlistItems?.pages.map((page, pageIdx) =>
-              page.items.map((item, index) => {
-                return <DesktopPlaylistItem item={item} key={index} index={pageIdx * PAGE_LIMIT + index + 1} />;
-              })
-            )}
-            <TableRow sx={{ height: "5px" }} ref={ref} />
-            {isFetchingNextPage && "Loading more..."}
-          </TableBody>
-        </Table>
+        <>
+          <PlaylistHeader>
+            <LargeAvarta src={playlist?.images?.[0]?.url} variant="rounded" />
+            <div>
+              <LargeTypography>{playlist?.name}</LargeTypography>
+              <Typography variant="h1">{playlist?.owner?.display_name}</Typography>
+            </div>
+          </PlaylistHeader>
+          {playlist?.tracks?.total === 0 ? (
+            <Typography>Search</Typography>
+          ) : (
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>#</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Album</TableCell>
+                  <TableCell>Date added</TableCell>
+                  <TableCell>Duration</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {playlistItems?.pages.map((page, pageIdx) =>
+                  page.items.map((item, index) => {
+                    return <DesktopPlaylistItem item={item} key={index} index={pageIdx * PAGE_LIMIT + index + 1} />;
+                  })
+                )}
+                <TableRow sx={{ height: "5px" }} ref={ref} />
+                {isFetchingNextPage && "Loading more..."}
+              </TableBody>
+            </Table>
+          )}
+        </>
       )}
     </StyledTableContainer>
   );
@@ -104,4 +117,13 @@ const LargeAvarta = styled(Avatar)({
 const LargeTypography = styled(Typography)({
   fontSize: `3.5rem`,
 });
+
+const ReqLoginBox = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  height: "100%",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
 export default PlaylistDetailPage;

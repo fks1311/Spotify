@@ -22,6 +22,9 @@ function App() {
     if (code && codeVerifier) {
       exchageToken({ code, codeVerifier });
     }
+    if (trigger) {
+      window.location.reload();
+    }
   }, [code, codeVerifier, trigger]);
 
   return (
