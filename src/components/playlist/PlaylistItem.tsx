@@ -1,17 +1,22 @@
 import { Avatar, Box, styled } from "@mui/material";
 import { SimplifiedPlaylistObject } from "../../models/playlist";
 import { EllipsisTypography } from "../album/Card";
+import { useNavigate } from "react-router";
 
 interface PlaylistItemProps {
   items: SimplifiedPlaylistObject[];
 }
 
 const PlaylistItem = ({ items }: PlaylistItemProps) => {
+  const navigate = useNavigate();
+  const handleClick = (id: string | undefined) => {
+    navigate(`/playlist/${id}`);
+  };
   return (
     <Container>
       {items &&
         items.map((data, idx) => (
-          <ItemBox key={idx}>
+          <ItemBox key={idx} onClick={() => handleClick(data.id)}>
             <Avatar src={data?.images?.[0].url} variant="rounded" />
             <div>
               <EllipsisTypography>{data?.name}</EllipsisTypography>
