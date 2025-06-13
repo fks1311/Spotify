@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { getCurrentUserPlaylists } from "../apis/playlistApi";
 import { GetCurrentUserPlaylistRequest } from "../models/playlist";
 import { getLocalStorageSafe } from "../utils/localStorage";
@@ -7,11 +7,19 @@ import { getLocalStorageSafe } from "../utils/localStorage";
 export const useGetCurrentUserPlaylists = ({ limit, offset }: GetCurrentUserPlaylistRequest) => {
   const accessToken = getLocalStorageSafe("access_token");
 
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["current-user-playlists"],
-    queryFn: () => {
-      return getCurrentUserPlaylists({ limit, offset });
+    queryFn: ({ pageParam = 0 }) => {
+      return getCurrentUserPlaylists({ limit, offset: pageParam });
     },
-    enabled: !!accessToken,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      if (lastPage.next) {
+        const url = new URL(lastPage.next);
+        const nextOffset = url.searchParams.get("offset");
+        return nextOffset ? parseInt(nextOffset) : undefined;
+      }
+      return undefined;
+    },
   });
 };
