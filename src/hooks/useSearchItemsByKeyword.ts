@@ -15,13 +15,13 @@ export const useSearchItemsByKeyword = (params: SearchRequestParams) => {
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       const nextPageUrl =
-        lastPage.track?.next ||
-        lastPage.artist?.next ||
-        lastPage.album?.next ||
+        lastPage.tracks?.next ||
+        lastPage.artists?.next ||
+        lastPage.albums?.next ||
         lastPage.playlists?.next ||
-        lastPage.show?.next ||
-        lastPage.episode?.next ||
-        lastPage.audiobook?.next;
+        lastPage.shows?.next ||
+        lastPage.episodes?.next ||
+        lastPage.audiobooks?.next;
 
       if (nextPageUrl) {
         const nextOffset = new URL(nextPageUrl).searchParams.get("offset");
