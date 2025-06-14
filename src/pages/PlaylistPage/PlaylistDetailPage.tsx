@@ -19,6 +19,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
 import LoginButton from "../../components/LoginButton";
+import EmptyPlaylistWithSearch from "../../components/playlist/EmptyPlaylistWithSearch";
 
 const PlaylistDetailPage = () => {
   const { ref, inView } = useInView({
@@ -50,7 +51,7 @@ const PlaylistDetailPage = () => {
 
   return (
     <StyledTableContainer>
-      {user === undefined ? (
+      {!user ? (
         <ReqLoginBox>
           <Typography variant="h2" fontWeight={700} mb="20px">
             다시 로그인 하세요
@@ -67,7 +68,7 @@ const PlaylistDetailPage = () => {
             </div>
           </PlaylistHeader>
           {playlist?.tracks?.total === 0 ? (
-            <Typography>Search</Typography>
+            <EmptyPlaylistWithSearch />
           ) : (
             <Table>
               <TableHead>
