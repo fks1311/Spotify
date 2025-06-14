@@ -6,6 +6,8 @@ import { getLocalStorageSafe } from "../../utils/localStorage";
 import EmptyPlaylist from "./EmptyPlaylist";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { ErrorMessage } from "../../components/ErrorMessage";
+import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
 
 interface ContainerProps {
   isMouseOver: boolean;
@@ -13,7 +15,9 @@ interface ContainerProps {
 const Library = () => {
   const { ref, inView } = useInView();
   const accessToken = getLocalStorageSafe("access_token");
-  const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetCurrentUserPlaylists({
+  const { data: user } = useGetCurrentUserProfile();
+
+  const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage, error } = useGetCurrentUserPlaylists({
     limit: 10,
     offset: 0,
   });
@@ -29,9 +33,15 @@ const Library = () => {
     return <LoadingSpinner />;
   }
 
+  if (error) {
+    return <ErrorMessage errorMessage={error.message} />;
+  }
+
+  if (!user) return <EmptyPlaylist />;
+
   return (
     <Container isMouseOver={mouseOver} onMouseOver={() => setMouseOver(true)} onMouseOut={() => setMouseOver(false)}>
-      {!accessToken || !data || data?.pages[0].total === 0 ? (
+      {!data || data?.pages[0].total === 0 ? (
         <EmptyPlaylist />
       ) : (
         <div>

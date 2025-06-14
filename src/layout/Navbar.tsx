@@ -5,6 +5,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { getLocalStorageSafe } from "../utils/localStorage";
 import { useSetRecoilState } from "recoil";
 import { triggerAtom } from "../utils/atom";
+import { useQueryClient } from "@tanstack/react-query";
 
 // trigger
 const Navbar = () => {
@@ -12,11 +13,13 @@ const Navbar = () => {
   const { data: userProfile } = useGetCurrentUserProfile();
   const accessToken = getLocalStorageSafe("access_token");
   const url = new URL(window.location.href);
+  const queryClient = useQueryClient();
 
   const logout = () => {
     window.localStorage.removeItem("access_token");
     url.search = "";
     window.history.replaceState(null, "", url.toString());
+    queryClient.removeQueries();
     setTrigger((prev) => prev + 1);
   };
 
