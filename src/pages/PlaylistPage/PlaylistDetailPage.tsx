@@ -27,13 +27,19 @@ const PlaylistDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   if (id === undefined) return <Navigate to="/" />;
   const { data: user } = useGetCurrentUserProfile();
-  const { data: playlist, isLoading: isPlaylistLoading } = useGetPlaylist({ playlist_id: id });
+  const {
+    data: playlist,
+    isLoading: isPlaylistLoading,
+    isError: playlistIsError,
+    error: playlistError,
+  } = useGetPlaylist({ playlist_id: id });
   const {
     data: playlistItems,
     isLoading: isPlaylistItemsLoading,
     hasNextPage,
     isFetchingNextPage,
     fetchNextPage,
+    isError: playlistItemsError,
   } = useGetPlaylistItems({ playlist_id: id, limit: PAGE_LIMIT, offset: 0 });
 
   useEffect(() => {
@@ -79,8 +85,9 @@ const PlaylistDetailPage = () => {
                     return <DesktopPlaylistItem item={item} key={index} index={pageIdx * PAGE_LIMIT + index + 1} />;
                   })
                 )}
-                <TableRow sx={{ height: "5px" }} ref={ref} />
-                {isFetchingNextPage && "Loading more..."}
+                <TableRow sx={{ height: "5px" }} ref={ref}>
+                  <TableCell>{isFetchingNextPage && "Loading more..."}</TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           )}

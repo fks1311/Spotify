@@ -21,5 +21,6 @@ export const useGetCurrentUserPlaylists = ({ limit, offset }: GetCurrentUserPlay
       }
       return undefined;
     },
+    enabled: !!accessToken,
   });
 };

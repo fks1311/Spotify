@@ -9,5 +9,6 @@ export const useGetPlaylist = (params: GetPlaylistRequest) => {
       return getPlaylist(params);
     },
     enabled: !!params.playlist_id,
+    retry: 1,
   });
 };
