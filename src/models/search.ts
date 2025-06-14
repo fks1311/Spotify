@@ -4,7 +4,7 @@ import { Artist } from "./artist";
 import { SimplifiedPlaylistObject } from "./playlist";
 import { ITrack, Show, SimplifiedAudiobookObject, SimplifiedEpisodeObject } from "./track";
 
-export const enum SEARCH_TYPE {
+export enum SEARCH_TYPE {
   Album = "album",
   Artist = "artist",
   Playlist = "playlist",
