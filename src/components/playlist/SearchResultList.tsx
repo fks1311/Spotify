@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import { Artist } from "../../models/artist";
 import { ITrack } from "../../models/track";
 
 interface SearchResultListProps {
