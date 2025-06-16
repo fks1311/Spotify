@@ -36,9 +36,10 @@ const PlaylistTrackList = ({ id }: PlaylistTrackListProps) => {
         <TableRow>
           <TableCell>#</TableCell>
           <TableCell>Title</TableCell>
+          <TableCell>Artist</TableCell>
           <TableCell>Album</TableCell>
           <TableCell>Date added</TableCell>
-          <TableCell>Duration</TableCell>
+          <TableCell sx={{ width: "150px" }}>Duration</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
