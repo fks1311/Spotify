@@ -2,8 +2,9 @@ import { Avatar, Box, styled, TableContainer, Typography } from "@mui/material";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
 import LoginButton from "../../components/LoginButton";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { PlaylistResponse } from "../../models/playlist";
+import ModalLayout from "../ModalLayout";
 
 interface PlaylistDetailLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   playlist: PlaylistResponse;
@@ -23,7 +24,8 @@ export const PlaylistDetailLayout = forwardRef<HTMLDivElement, PlaylistDetailLay
             <LoginButton />
           </ReqLoginBox>
         ) : (
-          <>
+          <ContentLayout>
+            <ModalLayout />
             <div style={{ padding: `1rem` }}>
               <PlaylistHeader>
                 <LargeAvarta src={playlist?.images?.[0]?.url} variant="rounded" />
@@ -37,7 +39,7 @@ export const PlaylistDetailLayout = forwardRef<HTMLDivElement, PlaylistDetailLay
               </OptionBtn>
             </div>
             <>{children}</>
-          </>
+          </ContentLayout>
         )}
       </StyledTableContainer>
     );
@@ -56,6 +58,10 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
   msOverflowStyle: "none", // IE and Edge
   scrollbarWidth: "none", // Firefox
 }));
+
+const ContentLayout = styled("div")({
+  position: "relative",
+});
 
 const ReqLoginBox = styled(Box)({
   display: "flex",
