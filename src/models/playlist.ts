@@ -154,8 +154,19 @@ export interface CreatePlaylistRequest {
   description?: string;
 }
 
-export interface AddItemToPlaylistRequest {
-  playlist_id: string;
+export type BasePlaylistParams = { playlist_id: string };
+export type BasePlaylistResponse = { snapshot_id?: string };
+
+export interface AddItemToPlaylistRequest extends BasePlaylistParams {
   position?: number;
   uris?: string[];
+}
+
+export interface AddItemToPlaylistResponse {
+  snapshot_id?: string;
+}
+
+export interface RemovePlaylistItemsRequest extends BasePlaylistParams {
+  tracks: { uri?: string }[];
+  snapshot_id?: string;
 }

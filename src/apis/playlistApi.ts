@@ -1,5 +1,6 @@
 import {
   AddItemToPlaylistRequest,
+  BasePlaylistResponse,
   CreatePlaylistRequest,
   GetCurrentUserPlaylistRequest,
   GetCurrentUserPlaylistResponse,
@@ -7,6 +8,7 @@ import {
   GetPlaylistItemsResponse,
   GetPlaylistRequest,
   PlaylistResponse,
+  RemovePlaylistItemsRequest,
 } from "../models/playlist";
 import { api } from "../utils/api";
 
@@ -63,14 +65,11 @@ export const createPlaylist = async (user_id: string, params: CreatePlaylistRequ
     });
     return response.data;
   } catch (error) {
-    console.log(error);
     throw new Error("fail to create playlists");
   }
 };
-interface AddItemToPlaylistResponse {
-  snapshot_id?: string;
-}
-export const addItemToPlaylist = async (params: AddItemToPlaylistRequest) => {
+
+export const addItemToPlaylist = async (params: AddItemToPlaylistRequest): Promise<BasePlaylistResponse> => {
   const { position, uris } = params;
   try {
     const response = await api.post(`/playlists/${params.playlist_id}/tracks`, {
@@ -80,5 +79,20 @@ export const addItemToPlaylist = async (params: AddItemToPlaylistRequest) => {
     return response.data;
   } catch (error) {
     throw new Error("fail to add item to playlist.");
+  }
+};
+
+export const removePlaylistItems = async (params: RemovePlaylistItemsRequest): Promise<BasePlaylistResponse> => {
+  try {
+    const { tracks, snapshot_id } = params;
+    const response = await api.delete(`/playlists/${params.playlist_id}/tracks`, {
+      data: {
+        tracks: tracks,
+        snapshot_id,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("fail to remove playlist items.");
   }
 };
