@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import { useGetNewReleases } from "../../hooks/useGetNewReleases";
-import { ErrorMessage } from "../../components/ErrorMessage";
-import { LoadingSpinner } from "../../components/LoadingSpinner";
+import { ErrorMessage } from "../../components/global/ErrorMessage";
+import { LoadingSpinner } from "../../components/global/LoadingSpinner";
 import Card from "../../components/album/Card";
 
 const NewReleases = () => {

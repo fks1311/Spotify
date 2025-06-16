@@ -1,6 +1,6 @@
 import { Avatar, Box, styled, TableContainer, Typography } from "@mui/material";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
-import LoginButton from "../../components/LoginButton";
+import LoginButton from "../../components/global/LoginButton";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { forwardRef, useState } from "react";
 import { PlaylistResponse } from "../../models/playlist";

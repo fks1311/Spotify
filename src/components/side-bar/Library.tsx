@@ -1,12 +1,12 @@
 import { styled } from "@mui/material";
-import { LoadingSpinner } from "../../components/LoadingSpinner";
+import { LoadingSpinner } from "../global/LoadingSpinner";
 import PlaylistItem from "./PlaylistItem";
 import { useGetCurrentUserPlaylists } from "../../hooks/useGetCurrentUserPlaylists";
 import { getLocalStorageSafe } from "../../utils/localStorage";
 import EmptyPlaylist from "./EmptyPlaylist";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { ErrorMessage } from "../../components/ErrorMessage";
+import { ErrorMessage } from "../global/ErrorMessage";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
 
 interface ContainerProps {
