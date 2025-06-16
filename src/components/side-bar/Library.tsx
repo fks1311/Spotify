@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
-import PlaylistItem from "../../components/playlist/PlaylistItem";
+import PlaylistItem from "./PlaylistItem";
 import { useGetCurrentUserPlaylists } from "../../hooks/useGetCurrentUserPlaylists";
 import { getLocalStorageSafe } from "../../utils/localStorage";
 import EmptyPlaylist from "./EmptyPlaylist";
