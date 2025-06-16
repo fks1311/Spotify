@@ -1,5 +1,5 @@
 import { CLIENT_ID, SCOPES } from "../configs/authConfig";
-import { REDIRECT_URI } from "../configs/commonConfig";
+import { LOCAL_REDIRECT_URI, PROD_REDIRECT_URI } from "../configs/commonConfig";
 import { AuthUrlParams } from "../models/auth";
 import { base64encode, generateRandomString, sha256 } from "./encrypt";
 
@@ -10,7 +10,7 @@ export const getSpotifyAuthUrl = async () => {
   const codeChallenge = base64encode(hashed);
 
   const clientId = CLIENT_ID;
-  const redirectUri = REDIRECT_URI;
+  const redirectUri = process.env.NODE_ENV === "production" ? PROD_REDIRECT_URI : LOCAL_REDIRECT_URI;
 
   const scope = SCOPES;
   const authUrl = new URL("https://accounts.spotify.com/authorize"); // spotify 제공용

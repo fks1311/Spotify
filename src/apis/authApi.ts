@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ExchageTokenResponse, IClientCredentialTokenResponse } from "../models/auth";
 import { CLIENT_ID, CLIENT_SECRET } from "../configs/authConfig";
-import { REDIRECT_URI } from "../configs/commonConfig";
+import { LOCAL_REDIRECT_URI, PROD_REDIRECT_URI } from "../configs/commonConfig";
 
 const encodedBase64 = (data: string): string => {
   if (typeof window !== "undefined") {
@@ -37,12 +37,12 @@ export const exchageToken = async (code: string, codeVerifier: string): Promise<
   try {
     const url = "https://accounts.spotify.com/api/token";
 
-    if (!CLIENT_ID || !REDIRECT_URI) throw new Error("Missing required parameters"); // CLIENT_ID나 REDIRECT_URI가 undefined면 fetch 에러 발생하니까 미리 throw Error 설정
+    if (!CLIENT_ID || !LOCAL_REDIRECT_URI || !PROD_REDIRECT_URI) throw new Error("Missing required parameters"); // CLIENT_ID나 REDIRECT_URI가 undefined면 fetch 에러 발생하니까 미리 throw Error 설정
     const body = new URLSearchParams({
       client_id: CLIENT_ID,
       grant_type: "authorization_code",
       code,
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: process.env.NODE_ENV === "production" ? PROD_REDIRECT_URI : LOCAL_REDIRECT_URI,
       code_verifier: codeVerifier,
     });
 
