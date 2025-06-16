@@ -5,18 +5,15 @@ import { SEARCH_TYPE } from "../../models/search";
 import SearchResultList from "./SearchResultList";
 import { Box } from "@mui/system";
 import { LoadingSpinner } from "../LoadingSpinner";
+import SearchBar from "./SearchBar";
 
+// playlist page - 곡 비어있을 때
 const EmptyPlaylistWithSearch = () => {
   const [keyword, setKeyword] = useState<string>("");
   const { data, error, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearchItemsByKeyword({
     q: keyword,
     type: Object.values(SEARCH_TYPE),
   });
-  const handleSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
-  };
-
-  // vvxsd
 
   const validEntries =
     data?.pages.map((item) => Object.entries(item).filter(([_, value]) => value?.items?.length > 0)) ?? [];
@@ -25,17 +22,7 @@ const EmptyPlaylistWithSearch = () => {
 
   return (
     <>
-      <Container>
-        <Typography variant="h1" my={"10px"}>
-          플레이리스트에 추가할 곡을 찾아보세요
-        </Typography>
-        <TextField
-          value={keyword}
-          onChange={handleSearchKeyword}
-          style={{ width: "100%" }}
-          placeholder="곡 또는 아티스트를 검색하세요"
-        />
-      </Container>
+      <SearchBar keyword={keyword} setKeyword={setKeyword} />
       {isLoading ? (
         <LoadingSpinner />
       ) : hasResult ? (

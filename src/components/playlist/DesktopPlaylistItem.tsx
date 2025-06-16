@@ -3,6 +3,7 @@ import { PlaylistTrack } from "../../models/playlist";
 import { IEpisode, ITrack } from "../../models/track";
 import moment from "moment";
 
+// playlist page - 곡 리스트
 interface DesktopPlaylistItemProps {
   index: number;
   item: PlaylistTrack;

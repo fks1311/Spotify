@@ -1,8 +1,12 @@
 import { Box, Button, styled, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { ITrack } from "../../models/track";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useAddItemToPlaylist } from "../../hooks/useAddItemToPlaylist";
+import { useParams } from "react-router";
 
+// playlist 검색 결과 화면
 interface SearchResultListProps {
   list: ITrack[];
   hasNextPage: boolean;
@@ -11,6 +15,11 @@ interface SearchResultListProps {
 }
 const SearchResultList = ({ list, hasNextPage, isFetchingNextPage, fetchNextPage }: SearchResultListProps) => {
   const { ref, inView } = useInView();
+  const { mutate: addItem } = useAddItemToPlaylist();
+  const { id } = useParams<{ id: string }>();
+
+  const [hover, setHover] = useState(false);
+
   if (!list || list.length === 0) return null;
 
   // const isTrackList = list.length > 0 && "album" in list[0] && "artists" in list[0];
@@ -18,6 +27,13 @@ const SearchResultList = ({ list, hasNextPage, isFetchingNextPage, fetchNextPage
 
   if (!isTrackList) return null;
 
+  const handleAddItemtoPlaylist = (item: ITrack) => {
+    if (id) {
+      addItem({ playlist_id: id, uris: [`spotify:track:${item.id}`] });
+    }
+  };
+
+  // 무한 로딩
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
@@ -27,8 +43,9 @@ const SearchResultList = ({ list, hasNextPage, isFetchingNextPage, fetchNextPage
   return (
     <Box sx={{ padding: "0 2rem" }}>
       <Table>
+        sf
         <TableBody>
-          {list.map((item: any) => (
+          {list.map((item: ITrack) => (
             <StyledTableRow key={item.id}>
               <TableCell style={{ width: "720px" }}>
                 <Box display="flex" alignItems="center">
@@ -43,7 +60,10 @@ const SearchResultList = ({ list, hasNextPage, isFetchingNextPage, fetchNextPage
               </TableCell>
               <TableCell style={{ width: "685px" }}>{item.album?.name}</TableCell>
               <TableCell style={{ width: "130px", display: "flex", justifyContent: "flex-end" }}>
-                <Button>Add</Button>
+                <Button onClick={() => handleAddItemtoPlaylist(item)}>Add</Button>
+                <Button>
+                  <MoreHorizIcon />
+                </Button>
               </TableCell>
             </StyledTableRow>
           ))}

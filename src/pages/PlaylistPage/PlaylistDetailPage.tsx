@@ -20,7 +20,10 @@ import { useEffect } from "react";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
 import LoginButton from "../../components/LoginButton";
 import EmptyPlaylistWithSearch from "../../components/playlist/EmptyPlaylistWithSearch";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { PlaylistDetailLayout } from "../../layout/playlist/PlaylistDetailLayout";
 
+// playlistpage
 const PlaylistDetailPage = () => {
   const { ref, inView } = useInView({
     threshold: 0.1, // 약간이라도 보이면 감지
@@ -50,51 +53,33 @@ const PlaylistDetailPage = () => {
   }, [inView, hasNextPage, isFetchingNextPage]);
 
   return (
-    <StyledTableContainer>
-      {!user ? (
-        <ReqLoginBox>
-          <Typography variant="h2" fontWeight={700} mb="20px">
-            다시 로그인 하세요
-          </Typography>
-          <LoginButton />
-        </ReqLoginBox>
+    <PlaylistDetailLayout playlist={playlist!}>
+      {playlist?.tracks?.total === 0 ? (
+        <EmptyPlaylistWithSearch />
       ) : (
-        <>
-          <PlaylistHeader>
-            <LargeAvarta src={playlist?.images?.[0]?.url} variant="rounded" />
-            <div>
-              <LargeTypography>{playlist?.name}</LargeTypography>
-              <Typography variant="h1">{playlist?.owner?.display_name}</Typography>
-            </div>
-          </PlaylistHeader>
-          {playlist?.tracks?.total === 0 ? (
-            <EmptyPlaylistWithSearch />
-          ) : (
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>#</TableCell>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Album</TableCell>
-                  <TableCell>Date added</TableCell>
-                  <TableCell>Duration</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {playlistItems?.pages.map((page, pageIdx) =>
-                  page.items.map((item, index) => {
-                    return <DesktopPlaylistItem item={item} key={index} index={pageIdx * PAGE_LIMIT + index + 1} />;
-                  })
-                )}
-                <TableRow sx={{ height: "5px" }} ref={ref}>
-                  <TableCell>{isFetchingNextPage && "Loading more..."}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          )}
-        </>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>#</TableCell>
+              <TableCell>Title</TableCell>
+              <TableCell>Album</TableCell>
+              <TableCell>Date added</TableCell>
+              <TableCell>Duration</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {playlistItems?.pages.map((page, pageIdx) =>
+              page.items.map((item, index) => {
+                return <DesktopPlaylistItem item={item} key={index} index={pageIdx * PAGE_LIMIT + index + 1} />;
+              })
+            )}
+            <TableRow sx={{ height: "5px" }} ref={ref}>
+              <TableCell sx={{ borderBottom: `0px solid` }}>{isFetchingNextPage && "Loading more..."}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       )}
-    </StyledTableContainer>
+    </PlaylistDetailLayout>
   );
 };
 
@@ -115,7 +100,7 @@ const PlaylistHeader = styled(Box)({
   display: "flex",
   gap: `1rem`,
   width: "100%",
-  padding: "1rem",
+  // padding: "1rem",
 });
 const LargeAvarta = styled(Avatar)({
   width: 200,
@@ -133,5 +118,11 @@ const ReqLoginBox = styled(Box)({
   justifyContent: "center",
   alignItems: "center",
 });
+
+const OptionBtn = styled("div")(({ theme }) => ({
+  display: `flex`,
+  justifyContent: "flex-end",
+  padding: "1rem",
+}));
 
 export default PlaylistDetailPage;
