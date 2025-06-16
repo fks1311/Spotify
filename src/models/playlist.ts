@@ -45,7 +45,7 @@ export interface PlaylistResponse extends BaseSimplifiedPlaylistObject {
   tracks?: ApiResponse<PlaylistTrackObject>;
 }
 
-interface PlaylistTrackObject {
+export interface PlaylistTrackObject {
   added_at?: string;
   added_by?: ExternalURLs;
   is_local?: boolean;
@@ -152,4 +152,10 @@ export interface CreatePlaylistRequest {
   playlistPublic?: boolean; // 원래 public인데 이미 객체지향에서 사용하고 있기 때문에 변경(api 파라미터 reserved word 에러 발생함)
   collaborative?: boolean;
   description?: string;
+}
+
+export interface AddItemToPlaylistRequest {
+  playlist_id: string;
+  position?: number;
+  uris?: string[];
 }

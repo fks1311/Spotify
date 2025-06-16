@@ -2,10 +2,10 @@ import { styled, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useSearchItemsByKeyword } from "../../hooks/useSearchItemsByKeyword";
 import { SEARCH_TYPE } from "../../models/search";
-import SearchResultList from "./SearchResultList";
 import { Box } from "@mui/system";
-import { LoadingSpinner } from "../LoadingSpinner";
-import SearchBar from "./SearchBar";
+import SearchResultList from "../../components/playlist/SearchResultList";
+import { LoadingSpinner } from "../../components/LoadingSpinner";
+import SearchBar from "../../components/playlist/SearchBar";
 
 // playlist page - 곡 비어있을 때
 const EmptyPlaylistWithSearch = () => {
