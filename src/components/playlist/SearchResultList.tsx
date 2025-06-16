@@ -43,7 +43,6 @@ const SearchResultList = ({ list, hasNextPage, isFetchingNextPage, fetchNextPage
   return (
     <Box sx={{ padding: "0 2rem" }}>
       <Table>
-        sf
         <TableBody>
           {list.map((item: ITrack) => (
             <StyledTableRow key={item.id}>

@@ -1,4 +1,5 @@
 import {
+  AddItemToPlaylistRequest,
   CreatePlaylistRequest,
   GetCurrentUserPlaylistRequest,
   GetCurrentUserPlaylistResponse,
@@ -60,10 +61,24 @@ export const createPlaylist = async (user_id: string, params: CreatePlaylistRequ
       collaborative,
       description,
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
     throw new Error("fail to create playlists");
+  }
+};
+interface AddItemToPlaylistResponse {
+  snapshot_id?: string;
+}
+export const addItemToPlaylist = async (params: AddItemToPlaylistRequest) => {
+  const { position, uris } = params;
+  try {
+    const response = await api.post(`/playlists/${params.playlist_id}/tracks`, {
+      position,
+      uris: params.uris,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("fail to add item to playlist.");
   }
 };
