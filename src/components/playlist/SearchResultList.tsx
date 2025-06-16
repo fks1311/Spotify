@@ -1,10 +1,16 @@
-import { Box, Button, styled, TableCell, TableRow, Typography } from "@mui/material";
+import { Box, Button, styled, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { ITrack } from "../../models/track";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 interface SearchResultListProps {
   list: ITrack[];
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
+  fetchNextPage: () => void;
 }
-const SearchResultList = ({ list }: SearchResultListProps) => {
+const SearchResultList = ({ list, hasNextPage, isFetchingNextPage, fetchNextPage }: SearchResultListProps) => {
+  const { ref, inView } = useInView();
   if (!list || list.length === 0) return null;
 
   // const isTrackList = list.length > 0 && "album" in list[0] && "artists" in list[0];
@@ -12,33 +18,45 @@ const SearchResultList = ({ list }: SearchResultListProps) => {
 
   if (!isTrackList) return null;
 
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage]);
+
   return (
-    <div>
-      {list.map((item: any) => (
-        <StyledTableRow key={item.id}>
-          <TableCell>
-            <Box display="flex" alignItems="center">
-              <Box>
-                <AlbumImage src={item.album?.images?.[0]?.url} width="40px" />
-              </Box>
-              <Box>
-                <Typography fontWeight={700}>{item.name}</Typography>
-                <Typography color="text.secondary">{item.artists?.[0]?.name ?? "Unknown Artist"}</Typography>
-              </Box>
-            </Box>
-          </TableCell>
-          <TableCell>{item.album?.name}</TableCell>
-          <TableCell>
-            <Button>Add</Button>
-          </TableCell>
-        </StyledTableRow>
-      ))}
-    </div>
+    <Box sx={{ padding: "0 2rem" }}>
+      <Table>
+        <TableBody>
+          {list.map((item: any) => (
+            <StyledTableRow key={item.id}>
+              <TableCell style={{ width: "720px" }}>
+                <Box display="flex" alignItems="center">
+                  <Box>
+                    <AlbumImage src={item.album?.images?.[0]?.url} width="40px" />
+                  </Box>
+                  <Box>
+                    <Typography fontWeight={700}>{item.name}</Typography>
+                    <Typography color="text.secondary">{item.artists?.[0]?.name ?? "Unknown Artist"}</Typography>
+                  </Box>
+                </Box>
+              </TableCell>
+              <TableCell style={{ width: "685px" }}>{item.album?.name}</TableCell>
+              <TableCell style={{ width: "130px", display: "flex", justifyContent: "flex-end" }}>
+                <Button>Add</Button>
+              </TableCell>
+            </StyledTableRow>
+          ))}
+          <StyledTableRow sx={{ height: "5px" }} ref={ref}>
+            <TableCell>{isFetchingNextPage && "Loading more..."}</TableCell>
+          </StyledTableRow>
+        </TableBody>
+      </Table>
+    </Box>
   );
 };
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  width: "100%",
   "&:hover": {
     backgroundColor: theme.palette.action.hover,
   },
