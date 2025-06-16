@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -88,6 +89,12 @@ module.exports = (env, argv) => {
         // 환경 변수 파일 로드
         allowEmptyValues: true,
         systemvars: true,
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: "public/manifest.json", to: "manifest.json" },
+          { from: "public/favicon.ico", to: "favicon.ico" },
+        ],
       }),
     ],
   };
