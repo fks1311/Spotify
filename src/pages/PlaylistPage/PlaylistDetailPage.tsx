@@ -19,7 +19,7 @@ const PlaylistDetailPage = () => {
 
   return (
     <PlaylistDetailLayout playlist={playlist!}>
-      {playlist?.tracks?.total === 0 ? <EmptyPlaylistWithSearch /> : <PlaylistTrackList id={id} />}
+      {playlist?.tracks?.total === 0 ? <EmptyPlaylistWithSearch id={id} /> : <PlaylistTrackList id={id} />}
     </PlaylistDetailLayout>
   );
 };

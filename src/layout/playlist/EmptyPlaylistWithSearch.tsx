@@ -1,4 +1,4 @@
-import { styled, TextField, Typography } from "@mui/material";
+import { styled } from "@mui/material";
 import { useState } from "react";
 import { useSearchItemsByKeyword } from "../../hooks/useSearchItemsByKeyword";
 import { SEARCH_TYPE } from "../../models/search";
@@ -6,9 +6,13 @@ import { Box } from "@mui/system";
 import SearchResultList from "../../components/playlist/SearchResultList";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import SearchBar from "../../components/playlist/SearchBar";
+import PlaylistTrackList from "./PlaylistTrackList";
 
+interface PlaylistTrackListProps {
+  id: string;
+}
 // playlist page - 곡 비어있을 때
-const EmptyPlaylistWithSearch = () => {
+const EmptyPlaylistWithSearch = ({ id }: PlaylistTrackListProps) => {
   const [keyword, setKeyword] = useState<string>("");
   const { data, error, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } = useSearchItemsByKeyword({
     q: keyword,
@@ -22,6 +26,7 @@ const EmptyPlaylistWithSearch = () => {
 
   return (
     <>
+      {hasResult ? <PlaylistTrackList id={id} /> : <></>}
       <SearchBar keyword={keyword} setKeyword={setKeyword} />
       {isLoading ? (
         <LoadingSpinner />
