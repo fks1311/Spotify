@@ -2,9 +2,11 @@ import { Avatar, Box, styled, TableContainer, Typography } from "@mui/material";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
 import LoginButton from "../../components/global/LoginButton";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { PlaylistResponse } from "../../models/playlist";
 import ModalLayout from "../ModalLayout";
+import OptionButton from "../../components/global/OptionButton";
+import { useOpenContext } from "../../components/global/ContextProvider";
 
 interface PlaylistDetailLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   playlist: PlaylistResponse;
@@ -13,6 +15,7 @@ interface PlaylistDetailLayoutProps extends React.HTMLAttributes<HTMLDivElement>
 export const PlaylistDetailLayout = forwardRef<HTMLDivElement, PlaylistDetailLayoutProps>(
   ({ playlist, children }, ref) => {
     const { data: user } = useGetCurrentUserProfile();
+    const { option, setOption } = useOpenContext();
 
     return (
       <StyledTableContainer>
@@ -35,7 +38,8 @@ export const PlaylistDetailLayout = forwardRef<HTMLDivElement, PlaylistDetailLay
                 </div>
               </PlaylistHeader>
               <OptionBtn>
-                <MoreHorizIcon />
+                <MoreHorizIcon onClick={() => setOption({ isOpen: !option.isOpen })} sx={{ cursor: "pointer" }} />
+                <OptionButton />
               </OptionBtn>
             </div>
             <>{children}</>
@@ -75,6 +79,7 @@ const OptionBtn = styled("div")(({ theme }) => ({
   display: `flex`,
   justifyContent: "flex-end",
   padding: "1rem",
+  position: `relative`,
 }));
 
 const PlaylistHeader = styled(Box)({
