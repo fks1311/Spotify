@@ -1,15 +1,32 @@
 import { Box, Modal, styled, Typography } from "@mui/material";
 import { useOpenContext } from "../components/global/ContextProvider";
 import { useRemovePlaylistItems } from "../hooks/useRemovePlaylistItems";
+import { useUnfollowPlaylist } from "../hooks/useUnfollowPlaylist";
+import { useParams } from "react-router";
 
 const ModalLayout = () => {
   const { modal, setModal } = useOpenContext();
-  const { mutate } = useRemovePlaylistItems();
+  const { mutate: removeItem } = useRemovePlaylistItems();
+  const { mutate: unfollow } = useUnfollowPlaylist();
+  const { id } = useParams<{ id: string }>();
 
-  const removePlaylistItem = () => {
-    if (modal?.data) {
-      mutate(modal.data);
-    }
+  const RemovePlaylistItem = () => {
+    const removePlaylistItem = () => {
+      if (modal?.data) {
+        removeItem(modal.data);
+      }
+    };
+
+    return <button onClick={() => removePlaylistItem()}>삭제</button>;
+  };
+
+  const UnfollowPlaylist = () => {
+    const unfollowPlaylist = () => {
+      if (id) {
+        unfollow({ id: id, ids: [id] });
+      }
+    };
+    return <button onClick={() => unfollowPlaylist()}>삭제2</button>;
   };
 
   return (
@@ -25,7 +42,7 @@ const ModalLayout = () => {
             <Typography variant="h1">해당 항목을 삭제하시겠습니까?</Typography>
             <BtnContainer>
               <button onClick={() => setModal({ isOpen: false })}>취소</button>
-              <button onClick={() => removePlaylistItem()}>삭제</button>
+              {modal?.type === "unfollow" ? UnfollowPlaylist() : RemovePlaylistItem()}
             </BtnContainer>
           </Content>
         </ModalContainer>
