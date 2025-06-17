@@ -3,30 +3,37 @@ import { useOpenContext } from "../components/global/ContextProvider";
 import { useRemovePlaylistItems } from "../hooks/useRemovePlaylistItems";
 import { useUnfollowPlaylist } from "../hooks/useUnfollowPlaylist";
 import { useParams } from "react-router";
+import ChangingNameModal from "../components/playlist/ChangingNameModal";
+import { useState } from "react";
 
 const ModalLayout = () => {
   const { modal, setModal } = useOpenContext();
   const { mutate: removeItem } = useRemovePlaylistItems();
   const { mutate: unfollow } = useUnfollowPlaylist();
   const { id } = useParams<{ id: string }>();
+  const [childModal, setChildModal] = useState<boolean>(false);
 
-  const RemovePlaylistItem = () => {
-    const removePlaylistItem = () => {
-      if (modal?.data) {
-        removeItem(modal.data);
-      }
-    };
+  const renderPlaylistActionButton = (type: string) => {
+    switch (type) {
+      case "remove": // 재생목록 항목 삭제
+        const removePlaylistItem = () => {
+          if (modal?.data) {
+            removeItem(modal.data);
+          }
+        };
+        return <button onClick={() => removePlaylistItem()}>삭제</button>;
 
-    return <button onClick={() => removePlaylistItem()}>삭제</button>;
-  };
+      case "unfollow": // 재생목록 삭제
+        const unfollowPlaylist = () => {
+          if (id) {
+            unfollow({ id: id, ids: [id] });
+          }
+        };
+        return <button onClick={() => unfollowPlaylist()}>삭제</button>;
 
-  const UnfollowPlaylist = () => {
-    const unfollowPlaylist = () => {
-      if (id) {
-        unfollow({ id: id, ids: [id] });
-      }
-    };
-    return <button onClick={() => unfollowPlaylist()}>삭제2</button>;
+      case "change": // 재생목록 이름 변경
+        return <button onClick={() => setChildModal(true)}>변경</button>;
+    }
   };
 
   return (
@@ -39,10 +46,11 @@ const ModalLayout = () => {
           aria-describedby="modal-modal-description"
         >
           <Content>
-            <Typography variant="h1">해당 항목을 삭제하시겠습니까?</Typography>
+            <Typography variant="h1">{`${modal.txt}`}</Typography>
+            {childModal ? <ChangingNameModal childModal={childModal} setChildModal={setChildModal} /> : <></>}
             <BtnContainer>
               <button onClick={() => setModal({ isOpen: false })}>취소</button>
-              {modal?.type === "unfollow" ? UnfollowPlaylist() : RemovePlaylistItem()}
+              {renderPlaylistActionButton(modal?.type!)}
             </BtnContainer>
           </Content>
         </ModalContainer>
@@ -69,9 +77,10 @@ const Content = styled(Box)(({ theme }) => ({
   borderRadius: "8px",
 }));
 
-const BtnContainer = styled("div")(({ theme }) => ({
+export const BtnContainer = styled("div")(({ theme }) => ({
   display: "flex",
-  justifyContent: "space-around",
+  justifyContent: "center",
+  gap: `1rem`,
   button: {
     border: "none",
     padding: `0.5rem 3rem`,
