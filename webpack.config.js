@@ -94,6 +94,7 @@ module.exports = (env, argv) => {
         patterns: [
           { from: "public/manifest.json", to: "manifest.json" },
           { from: "public/favicon.ico", to: "favicon.ico" },
+          { from: "public/_redirects", to: "" },
         ],
       }),
     ],
