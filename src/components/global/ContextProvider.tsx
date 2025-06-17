@@ -8,6 +8,7 @@ interface ModalState {
     tracks: { uri: string }[];
   };
   type?: string;
+  txt?: string;
 }
 interface OptionButtonState {
   isOpen: boolean;
