@@ -1,6 +1,7 @@
 import {
   AddItemToPlaylistRequest,
   BasePlaylistResponse,
+  ChangePlaylistDetailRequest,
   CreatePlaylistRequest,
   GetCurrentUserPlaylistRequest,
   GetCurrentUserPlaylistResponse,
@@ -108,5 +109,16 @@ export const UnfollowPlaylist = async (params: UnfollowPlaylistRequest) => {
     return response.data;
   } catch (error) {
     throw new Error("fail to unfollow playlist");
+  }
+};
+
+export const changePlaylistDetail = async (params: ChangePlaylistDetailRequest) => {
+  try {
+    const response = await api.put(`/playlists/${params.playlist_id}`, {
+      name: params.name,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("fail to change playlist Detail");
   }
 };

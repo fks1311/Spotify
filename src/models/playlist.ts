@@ -148,7 +148,7 @@ export interface PlaylistTrack {
 }
 
 export interface CreatePlaylistRequest {
-  name: string;
+  name?: string;
   playlistPublic?: boolean; // 원래 public인데 이미 객체지향에서 사용하고 있기 때문에 변경(api 파라미터 reserved word 에러 발생함)
   collaborative?: boolean;
   description?: string;
@@ -175,3 +175,5 @@ export interface UnfollowPlaylistRequest {
   id: string;
   ids: string[];
 }
+
+export interface ChangePlaylistDetailRequest extends BasePlaylistParams, CreatePlaylistRequest {}
