@@ -9,6 +9,7 @@ import {
   GetPlaylistRequest,
   PlaylistResponse,
   RemovePlaylistItemsRequest,
+  UnfollowPlaylistRequest,
 } from "../models/playlist";
 import { api } from "../utils/api";
 
@@ -94,5 +95,18 @@ export const removePlaylistItems = async (params: RemovePlaylistItemsRequest): P
     return response.data;
   } catch (error) {
     throw new Error("fail to remove playlist items.");
+  }
+};
+
+export const UnfollowPlaylist = async (params: UnfollowPlaylistRequest) => {
+  try {
+    const response = await api.delete(`/playlists/${params.id}/followers`, {
+      data: {
+        ids: params.ids,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("fail to unfollow playlist");
   }
 };

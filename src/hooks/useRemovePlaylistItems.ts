@@ -9,7 +9,7 @@ export const useRemovePlaylistItems = () => {
   const queryClient = useQueryClient();
   const { id } = useParams<{ id: string }>();
   const { data: user } = useGetCurrentUserProfile();
-  const { open, setOpen } = useOpenContext();
+  const { modal, setModal } = useOpenContext();
 
   return useMutation({
     mutationFn: (params: RemovePlaylistItemsRequest) => {
@@ -20,7 +20,7 @@ export const useRemovePlaylistItems = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["playlist-items", id] });
-      setOpen({ isOpen: false, data: undefined });
+      setModal({ isOpen: false, data: undefined });
     },
   });
 };
