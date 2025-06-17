@@ -7,6 +7,7 @@ interface ModalState {
     playlist_id: string;
     tracks: { uri: string }[];
   };
+  type?: string;
 }
 interface OptionButtonState {
   isOpen: boolean;
@@ -24,7 +25,7 @@ const OpenContext = createContext<ContextProviderProps | null>(null);
 
 // 3. Provider 컴포넌트 생성
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [modal, setModal] = useState<ModalState>({ isOpen: false, data: undefined });
+  const [modal, setModal] = useState<ModalState>({ isOpen: false, data: undefined, type: undefined });
   const [option, setOption] = useState<OptionButtonState>({ isOpen: false });
   return <OpenContext.Provider value={{ modal, setModal, option, setOption }}>{children}</OpenContext.Provider>;
 };
