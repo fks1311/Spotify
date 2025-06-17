@@ -15,7 +15,7 @@ interface DesktopPlaylistItemProps {
 const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
   const [cur, setCur] = useState<number>();
   const { id } = useParams<{ id: string }>();
-  const { open, setOpen } = useOpenContext();
+  const { modal, setModal } = useOpenContext();
   const isEpisode = (track: ITrack | IEpisode | undefined): track is IEpisode => {
     return track !== undefined && "description" in track;
   };
@@ -31,7 +31,7 @@ const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
 
   const openModal = () => {
     if (id && item?.track?.uri) {
-      setOpen({ isOpen: true, data: { playlist_id: id, tracks: [{ uri: item?.track?.uri }] } });
+      setModal({ isOpen: true, data: { playlist_id: id, tracks: [{ uri: item?.track?.uri }] } });
     }
   };
 

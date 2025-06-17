@@ -8,9 +8,13 @@ interface ModalState {
     tracks: { uri: string }[];
   };
 }
+interface OptionButtonState {
+  isOpen: boolean;
+}
+
 interface ContextProviderProps {
-  open: ModalState;
-  setOpen: React.Dispatch<React.SetStateAction<ModalState>>;
+  modal: ModalState;
+  setModal: React.Dispatch<React.SetStateAction<ModalState>>;
 }
 
 // 2. 초기 Context 생성
@@ -18,8 +22,8 @@ const OpenContext = createContext<ContextProviderProps | null>(null);
 
 // 3. Provider 컴포넌트 생성
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [open, setOpen] = useState<ModalState>({ isOpen: false, data: undefined });
-  return <OpenContext.Provider value={{ open, setOpen }}>{children}</OpenContext.Provider>;
+  const [modal, setModal] = useState<ModalState>({ isOpen: false, data: undefined });
+  return <OpenContext.Provider value={{ modal, setModal }}>{children}</OpenContext.Provider>;
 };
 
 // 4. 커스텀 훅

@@ -3,28 +3,28 @@ import { useOpenContext } from "../components/global/ContextProvider";
 import { useRemovePlaylistItems } from "../hooks/useRemovePlaylistItems";
 
 const ModalLayout = () => {
-  const { open, setOpen } = useOpenContext();
+  const { modal, setModal } = useOpenContext();
   const { mutate } = useRemovePlaylistItems();
 
   const removePlaylistItem = () => {
-    if (open?.data) {
-      mutate(open.data);
+    if (modal?.data) {
+      mutate(modal.data);
     }
   };
 
   return (
     <>
-      {open ? (
+      {modal ? (
         <ModalContainer
-          open={open.isOpen}
-          onClose={() => setOpen({ isOpen: false })}
+          open={modal.isOpen}
+          onClose={() => setModal({ isOpen: false })}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Content>
             <Typography variant="h1">해당 항목을 삭제하시겠습니까?</Typography>
             <BtnContainer>
-              <button onClick={() => setOpen({ isOpen: false })}>취소</button>
+              <button onClick={() => setModal({ isOpen: false })}>취소</button>
               <button onClick={() => removePlaylistItem()}>삭제</button>
             </BtnContainer>
           </Content>
