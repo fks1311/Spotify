@@ -3,6 +3,7 @@ import { useGetPlaylist } from "../../hooks/useGetPlaylist";
 import { PlaylistDetailLayout } from "../../layout/playlist/PlaylistDetailLayout";
 import EmptyPlaylistWithSearch from "../../layout/playlist/EmptyPlaylistWithSearch";
 import PlaylistTrackList from "../../layout/playlist/PlaylistTrackList";
+import { LoadingSpinner } from "../../components/global/LoadingSpinner";
 
 // playlistpage
 const PlaylistDetailPage = () => {
@@ -16,6 +17,8 @@ const PlaylistDetailPage = () => {
     isError: playlistIsError,
     error: playlistError,
   } = useGetPlaylist({ playlist_id: id });
+
+  if (isPlaylistLoading) return <LoadingSpinner />;
 
   return (
     <PlaylistDetailLayout playlist={playlist!}>
