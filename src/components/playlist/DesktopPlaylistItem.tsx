@@ -31,7 +31,12 @@ const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
 
   const openModal = () => {
     if (id && item?.track?.uri) {
-      setModal({ isOpen: true, data: { playlist_id: id, tracks: [{ uri: item?.track?.uri }] } });
+      setModal({
+        isOpen: true,
+        data: { playlist_id: id, tracks: [{ uri: item?.track?.uri }] },
+        type: "remove",
+        txt: "해당 곡을 삭제하시겠습니까?",
+      });
     }
   };
 
