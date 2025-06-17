@@ -170,3 +170,8 @@ export interface RemovePlaylistItemsRequest extends BasePlaylistParams {
   tracks: { uri?: string }[];
   snapshot_id?: string;
 }
+
+export interface UnfollowPlaylistRequest {
+  id: string;
+  ids: string[];
+}
