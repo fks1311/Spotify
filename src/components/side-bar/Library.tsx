@@ -33,11 +33,12 @@ const Library = () => {
     return <LoadingSpinner />;
   }
 
-  if (error) {
-    return <ErrorMessage errorMessage={error.message} />;
-  }
+  // if (error) {
+  //   return <ErrorMessage errorMessage={error.message} />;
+  // }
 
   if (!user) return <EmptyPlaylist />;
+  if (error) return <EmptyPlaylist />;
 
   return (
     <Container isMouseOver={mouseOver} onMouseOver={() => setMouseOver(true)} onMouseOut={() => setMouseOver(false)}>
