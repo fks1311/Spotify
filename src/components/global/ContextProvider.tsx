@@ -15,6 +15,8 @@ interface OptionButtonState {
 interface ContextProviderProps {
   modal: ModalState;
   setModal: React.Dispatch<React.SetStateAction<ModalState>>;
+  option: OptionButtonState;
+  setOption: React.Dispatch<React.SetStateAction<OptionButtonState>>;
 }
 
 // 2. 초기 Context 생성
@@ -23,7 +25,8 @@ const OpenContext = createContext<ContextProviderProps | null>(null);
 // 3. Provider 컴포넌트 생성
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [modal, setModal] = useState<ModalState>({ isOpen: false, data: undefined });
-  return <OpenContext.Provider value={{ modal, setModal }}>{children}</OpenContext.Provider>;
+  const [option, setOption] = useState<OptionButtonState>({ isOpen: false });
+  return <OpenContext.Provider value={{ modal, setModal, option, setOption }}>{children}</OpenContext.Provider>;
 };
 
 // 4. 커스텀 훅
