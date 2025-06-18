@@ -16,7 +16,7 @@ const Navbar = () => {
   const queryClient = useQueryClient();
 
   const logout = () => {
-    window.localStorage.removeItem("access_token");
+    window.localStorage.clear();
     url.search = "";
     window.history.replaceState(null, "", url.toString());
     queryClient.removeQueries();
