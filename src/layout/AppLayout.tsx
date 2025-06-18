@@ -30,6 +30,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
   padding: "8px",
   marginBottom: "8px",
   marginRight: "8px",
+  overflowX: "hidden",
 }));
 
 export default AppLayout;
