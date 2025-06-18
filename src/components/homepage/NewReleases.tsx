@@ -38,7 +38,7 @@ const NewReleases = () => {
   );
 };
 
-const ListContainer = styled(Box)(({ theme }) => ({
+export const ListContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   overflowX: "scroll",
   "&::-webkit-scrollbar": {

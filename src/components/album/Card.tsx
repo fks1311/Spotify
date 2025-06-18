@@ -17,7 +17,7 @@ const Card = ({ image, name, artistName }: CardProps) => {
         </Overlay>
       </HoverLayout>
       <EllipsisTypography variant="h2">{name}</EllipsisTypography>
-      <EllipsisTypography color={theme.palette.text.secondary}>{artistName || "No artist"}</EllipsisTypography>
+      <EllipsisTypography color={theme.palette.text.secondary}>{artistName || ""}</EllipsisTypography>
     </Container>
   );
 };

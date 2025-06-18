@@ -1,10 +1,12 @@
 import { styled } from "@mui/material";
 import NewReleases from "../../components/homepage/NewReleases";
+import ServeralCategories from "../../components/homepage/ServeralCategories";
 
 const HomePage = () => {
   return (
     <Container>
       <NewReleases />
+      <ServeralCategories />
     </Container>
   );
 };
