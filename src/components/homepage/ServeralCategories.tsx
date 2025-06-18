@@ -16,8 +16,14 @@ const ServeralCategories = () => {
       {data && data?.pages[0]?.categories?.items.length > 0 ? (
         <ListContainer>
           {data?.pages[0]?.categories?.items.map((category: any, idx: number) => (
-            <Box key={category.id}>
-              <Card name={category.name} image={category.icons[0].url} />{" "}
+            <Box
+              key={category.id}
+              sx={{
+                minWidth: 180,
+                marginBottom: "10px",
+              }}
+            >
+              <Card name={category.name} image={category.icons[0].url} />
             </Box>
           ))}
         </ListContainer>
