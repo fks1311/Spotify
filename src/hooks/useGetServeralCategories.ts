@@ -14,8 +14,8 @@ export const useGetServeralCategories = ({ limit, offset }: GetServeralCategorie
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      if (lastPage.next) {
-        const url = new URL(lastPage.next);
+      if (lastPage.categories.next) {
+        const url = new URL(lastPage.categories.next);
         const nextOffset = url.searchParams.get("offset");
         return nextOffset ? parseInt(nextOffset) : undefined;
       }
