@@ -24,6 +24,7 @@ const NewReleases = () => {
               key={album.id}
               sx={{
                 minWidth: 180,
+                marginBottom: "10px",
               }}
             >
               <Card image={album.images[0].url} name={album.name} artistName={album.artists[0].name} />
@@ -36,16 +37,6 @@ const NewReleases = () => {
     </TrackListLayout>
   );
 };
-
-const Container = styled("div")({
-  padding: `1rem`,
-});
-
-const Title = styled(Box)({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "flex-end",
-});
 
 const ListContainer = styled(Box)(({ theme }) => ({
   display: "flex",
