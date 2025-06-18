@@ -19,13 +19,13 @@ function App() {
   const { mutate: exchageToken } = useExchangeToken();
 
   useEffect(() => {
-    if (code && codeVerifier) {
-      exchageToken({ code, codeVerifier });
-    }
-    // if (trigger) {
-    //   window.location.reload();
-    // }
-  }, [code, codeVerifier, trigger]);
+    const fetchToken = async () => {
+      if (code && codeVerifier) {
+        exchageToken({ code, codeVerifier });
+      }
+    };
+    fetchToken();
+  }, [code, codeVerifier]);
 
   return (
     <Suspense fallback={<div>loading...</div>}>
