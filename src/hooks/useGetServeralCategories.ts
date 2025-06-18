@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getServeralCategories } from "../apis/playlistApi";
 import { useClientCredentialToken } from "./useClientCredentialToken";
 import { GetServeralCategoriesParams } from "../models/category";
+import { getServeralCategories } from "../apis/category";
 
 export const useGetServeralCategories = ({ limit, offset }: GetServeralCategoriesParams) => {
   const clientCredentialToken = useClientCredentialToken();
