@@ -16,7 +16,6 @@ const NewestArtist = () => {
   if (isLoading) return <LoadingSpinner />;
 
   const artists = data?.pages[0]?.artists?.items ?? [];
-  console.log(artists);
 
   return (
     <TrackListLayout title="아티스트">
