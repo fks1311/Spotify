@@ -23,9 +23,11 @@ const Card = ({ image, name, artistName }: CardProps) => {
 };
 
 const Container = styled("div")(({ theme }) => ({
-  minWidth: "160px",
+  // minWidth: "160px",
+  width: "160px",
   padding: "12px",
   borderRadius: "8px",
+  flexShrink: 0,
   "&:hover": {
     backgroundColor: theme.palette.action.hover,
     transform: "translate3d(0px, 0px, 0px)",
@@ -52,7 +54,7 @@ const Overlay = styled("div")({
 
 const AlbumImg = styled("img")({
   width: "100%",
-  height: "auto",
+  // height: "160px",
   borderRadius: "8px",
 });
 
