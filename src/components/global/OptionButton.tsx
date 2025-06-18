@@ -1,11 +1,14 @@
 import { styled } from "@mui/material";
 import { useOpenContext } from "./ContextProvider";
 import { useParams } from "react-router";
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { useRef } from "react";
 
 const OptionButton = () => {
-  const { option } = useOpenContext();
+  const { option, setOption } = useOpenContext();
   const { id } = useParams<{ id: string }>();
   const { setModal } = useOpenContext();
+  const ref = useRef<HTMLUListElement>(null) as React.RefObject<HTMLUListElement>;
 
   const handleChangePlaylistName = () => {
     if (id) {
@@ -21,10 +24,16 @@ const OptionButton = () => {
     }
   };
 
+  useClickOutside(ref, () => {
+    if (typeof setOption === "function") {
+      setOption({ isOpen: false });
+    }
+  });
+
   return (
     <>
       {option.isOpen ? (
-        <UlStyle>
+        <UlStyle ref={ref}>
           <li onClick={() => handleChangePlaylistName()}>재생목록 이름 변경</li>
           <li onClick={() => handleChangeCoverImg()}>재생목록 커버 변경</li>
           <li onClick={() => handleUnfollowPlaylist()}>재생목록 삭제</li>
