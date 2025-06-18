@@ -15,7 +15,6 @@ export const useCreatePlaylist = () => {
       return Promise.reject(new Error("user is not defined"));
     },
     onSuccess: (data, variables, context) => {
-      console.log("성공");
       queryClient.invalidateQueries({ queryKey: ["current-user-playlists"] });
     },
   });

@@ -58,7 +58,6 @@ export const getPlaylistItems = async ({
 export const createPlaylist = async (user_id: string, params: CreatePlaylistRequest): Promise<PlaylistResponse> => {
   try {
     const { name, playlistPublic, collaborative, description } = params;
-    console.log(">###");
     const response = await api.post(`/users/${user_id}/playlists`, {
       name,
       public: playlistPublic,
