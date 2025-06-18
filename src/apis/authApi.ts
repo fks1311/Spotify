@@ -13,7 +13,7 @@ const encodedBase64 = (data: string): string => {
   }
 };
 
-/** Spotify API : CLIENT_ID와 CLIENT_SECRET을 통해 Access Token을 요청합니다. */
+/** Spotify API : Spotify Web API 서비스에 대한 후속 호출 가능한 JSON 데이터가 수신됩니다. */
 export const getClientCredentialToken = async (): Promise<IClientCredentialTokenResponse> => {
   try {
     const body = new URLSearchParams({
@@ -33,6 +33,7 @@ export const getClientCredentialToken = async (): Promise<IClientCredentialToken
 };
 
 /** Spotify : 부여된 권한 코드를 액세스 토큰으로 교환합니다. */
+/** 사용자 권한 요청 -> 요청 수락 -> 액세스 토큰 생성 */
 export const exchageToken = async (code: string, codeVerifier: string): Promise<ExchageTokenResponse> => {
   try {
     const url = "https://accounts.spotify.com/api/token";
@@ -53,6 +54,30 @@ export const exchageToken = async (code: string, codeVerifier: string): Promise<
     });
     return response.data;
   } catch (error) {
-    throw new Error("Fail to fetch Token");
+    throw new Error("Fail to fetch Access Token");
+  }
+};
+
+/** Spotify API : refresh Token 생성 */
+export const getRefreshToken = async (refreshToken: string) => {
+  try {
+    const url = "https://accounts.spotify.com/api/token";
+
+    if (!CLIENT_ID || !LOCAL_REDIRECT_URI || !PROD_REDIRECT_URI) throw new Error("Missing required parameters"); // CLIENT_ID나 REDIRECT_URI가 undefined면 fetch 에러 발생하니까 미리 throw Error 설정
+    const body = new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+      client_id: CLIENT_ID,
+    });
+
+    const response = await axios.post(url, body, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw new Error("Fail to fetch Refresh Token");
   }
 };
