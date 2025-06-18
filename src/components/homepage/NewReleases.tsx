@@ -3,6 +3,7 @@ import { useGetNewReleases } from "../../hooks/useGetNewReleases";
 import { ErrorMessage } from "../../components/global/ErrorMessage";
 import { LoadingSpinner } from "../../components/global/LoadingSpinner";
 import Card from "../../components/album/Card";
+import TrackListLayout from "../../layout/homepage/TrackListLayout";
 
 const NewReleases = () => {
   const { data, error, isLoading } = useGetNewReleases();
@@ -15,13 +16,7 @@ const NewReleases = () => {
   }
 
   return (
-    <Container>
-      <Title>
-        <Typography variant="h1" paddingBottom="8px">
-          새 앨범 발매
-        </Typography>
-        <Typography>모두 표시</Typography>
-      </Title>
+    <TrackListLayout title="새 앨범 발매">
       {data && data?.albums?.items.length > 0 ? (
         <ListContainer sx={{}}>
           {data.albums.items.map((album) => (
@@ -38,7 +33,7 @@ const NewReleases = () => {
       ) : (
         <Typography variant="h2">No data</Typography>
       )}
-    </Container>
+    </TrackListLayout>
   );
 };
 
