@@ -54,7 +54,7 @@ const Overlay = styled("div")({
 
 const AlbumImg = styled("img")({
   width: "100%",
-  // height: "160px",
+  height: "160px",
   borderRadius: "8px",
 });
 
