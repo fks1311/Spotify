@@ -9,7 +9,7 @@ interface CardProps {
 }
 const Card = ({ image, name, artistName }: CardProps) => {
   return (
-    <Container>
+    <Container onClick={() => alert("진행 예정입니다")}>
       <HoverLayout>
         <AlbumImg src={image} />
         <Overlay className="overlay">
