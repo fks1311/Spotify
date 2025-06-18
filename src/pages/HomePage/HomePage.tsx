@@ -1,11 +1,15 @@
-import NewReleases from "../../layout/homepage/NewReleases";
+import { styled } from "@mui/material";
+import NewReleases from "../../components/homepage/NewReleases";
 
 const HomePage = () => {
   return (
-    <div>
+    <Container>
       <NewReleases />
-    </div>
+    </Container>
   );
 };
 
+const Container = styled("div")({
+  padding: `0 1rem`,
+});
 export default HomePage;

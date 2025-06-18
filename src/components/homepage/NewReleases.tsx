@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, styled, Typography } from "@mui/material";
 import { useGetNewReleases } from "../../hooks/useGetNewReleases";
 import { ErrorMessage } from "../../components/global/ErrorMessage";
 import { LoadingSpinner } from "../../components/global/LoadingSpinner";
@@ -15,8 +15,8 @@ const NewReleases = () => {
   }
 
   return (
-    <div>
-      <Typography variant="h1" paddingTop="8px">
+    <Container>
+      <Typography variant="h1" paddingBottom="8px">
         New Released Albums
       </Typography>
       {data && data?.albums?.items.length > 0 ? (
@@ -30,8 +30,11 @@ const NewReleases = () => {
       ) : (
         <Typography variant="h2">No data</Typography>
       )}
-    </div>
+    </Container>
   );
 };
 
+const Container = styled("div")({
+  padding: `1rem`,
+});
 export default NewReleases;
