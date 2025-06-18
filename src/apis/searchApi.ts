@@ -28,7 +28,7 @@ export const searchItemsByKeyword = async (token: string, params: SearchRequestP
 export const searchCategory = async (token: string, params: SearchRequestParams): Promise<SearchResponse> => {
   try {
     const response = await axios.get(`${SPOTIFY_BASE_URL}/search?q=${params.q}&type=${params.type[0]}`, {
-      params: { limit: params.limit },
+      params: { limit: params.limit, market: "KR" },
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
