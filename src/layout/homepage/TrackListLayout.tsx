@@ -7,7 +7,9 @@ const TrackListLayout = ({ children, title }: { children: React.ReactNode; title
         <Typography variant="h1" paddingBottom="8px">
           {title}
         </Typography>
-        <Typography>모두 표시</Typography>
+        <Typography sx={{ cursor: "pointer" }} onClick={() => alert("진행 예정")}>
+          모두 표시
+        </Typography>
       </Title>
       {children}
     </Container>
