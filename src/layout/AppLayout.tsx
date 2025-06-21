@@ -1,13 +1,14 @@
 import { Box, styled } from "@mui/material";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Navbar from "./Navbar";
 import Side_bar from "./Side_bar";
 
 const AppLayout = () => {
+  const { pathname } = useLocation();
   return (
     <Layout>
       <Side_bar />
-      <ContentBox>
+      <ContentBox pathname={pathname}>
         <Navbar />
         <Outlet />
       </ContentBox>
@@ -22,7 +23,10 @@ const Layout = styled("div")({
   gap: "8px",
 });
 
-const ContentBox = styled(Box)(({ theme }) => ({
+interface ContentBoxStyleProps {
+  pathname: string;
+}
+const ContentBox = styled(Box)<ContentBoxStyleProps>(({ theme, pathname }) => ({
   borderRadius: "8px",
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,
@@ -31,6 +35,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
   marginBottom: "8px",
   marginRight: "8px",
   overflowX: "hidden",
+  position: pathname === "/search" ? "relative" : "static",
 }));
 
 export default AppLayout;
