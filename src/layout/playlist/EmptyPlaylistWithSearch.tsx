@@ -4,7 +4,7 @@ import { useSearchItemsByKeyword } from "../../hooks/useSearchItemsByKeyword";
 import { SEARCH_TYPE } from "../../models/search";
 import { Box } from "@mui/system";
 import SearchResultList from "../../components/playlist/SearchResultList";
-import { LoadingSpinner } from "../../components/global/LoadingSpinner";
+import { LoadingSpinner } from "../../common/components/LoadingSpinner";
 import PlayListInSearchBar from "../../components/playlist/PlayListInSearchBar";
 import PlaylistTrackList from "./PlaylistTrackList";
 

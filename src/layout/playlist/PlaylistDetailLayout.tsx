@@ -1,11 +1,11 @@
 import { Avatar, Box, styled, TableContainer, Typography } from "@mui/material";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
-import LoginButton from "../../components/global/LoginButton";
+import LoginButton from "../../common/components/LoginButton";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { forwardRef } from "react";
 import { PlaylistResponse } from "../../models/playlist";
 import ModalLayout from "../ModalLayout";
-import OptionButton from "../../components/global/OptionButton";
+import OptionButton from "../../common/components/OptionButton";
 import { useOpenContext } from "../../components/global/ContextProvider";
 
 interface PlaylistDetailLayoutProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,5 +1,5 @@
 import { Box, InputAdornment, styled, TextField } from "@mui/material";
-import LoginButton from "../components/global/LoginButton";
+import LoginButton from "../common/components/LoginButton";
 import { useGetCurrentUserProfile } from "../hooks/useGetCurrentUserProfile";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { getLocalStorageSafe } from "../utils/localStorage";

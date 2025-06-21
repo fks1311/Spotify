@@ -3,7 +3,7 @@ import { useGetPlaylist } from "../../hooks/useGetPlaylist";
 import { PlaylistDetailLayout } from "../../layout/playlist/PlaylistDetailLayout";
 import EmptyPlaylistWithSearch from "../../layout/playlist/EmptyPlaylistWithSearch";
 import PlaylistTrackList from "../../layout/playlist/PlaylistTrackList";
-import { LoadingSpinner } from "../../components/global/LoadingSpinner";
+import { LoadingSpinner } from "../../common/components/LoadingSpinner";
 
 // playlistpage
 const PlaylistDetailPage = () => {

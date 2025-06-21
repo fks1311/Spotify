@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useSearchCategory } from "../../hooks/useSearchCategory";
 import TrackListLayout from "../../layout/homepage/TrackListLayout";
 import { SEARCH_TYPE } from "../../models/search";
-import { LoadingSpinner } from "../global/LoadingSpinner";
+import { LoadingSpinner } from "../../common/components/LoadingSpinner";
 import { ListContainer } from "./NewReleases";
 import Card from "../album/Card";
 

@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import { useGetServeralCategories } from "../../hooks/useGetServeralCategories";
 import TrackListLayout from "../../layout/homepage/TrackListLayout";
-import { LoadingSpinner } from "../global/LoadingSpinner";
+import { LoadingSpinner } from "../../common/components/LoadingSpinner";
 import { ListContainer } from "./NewReleases";
 import { Typography } from "@mui/material";
 import Card from "../album/Card";

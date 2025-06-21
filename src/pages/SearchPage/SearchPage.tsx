@@ -1,5 +1,5 @@
 import { Box, Grid, styled, Typography } from "@mui/material";
-import { LoadingSpinner } from "../../components/global/LoadingSpinner";
+import { LoadingSpinner } from "../../common/components/LoadingSpinner";
 import { useGetServeralCategories } from "../../hooks/useGetServeralCategories";
 
 const SearchPage = () => {

@@ -1,7 +1,7 @@
 import { Box, Grid, styled, Typography } from "@mui/material";
 import { useGetNewReleases } from "../../hooks/useGetNewReleases";
-import { ErrorMessage } from "../../components/global/ErrorMessage";
-import { LoadingSpinner } from "../../components/global/LoadingSpinner";
+import { ErrorMessage } from "../../common/components/ErrorMessage";
+import { LoadingSpinner } from "../../common/components/LoadingSpinner";
 import Card from "../../components/album/Card";
 import TrackListLayout from "../../layout/homepage/TrackListLayout";
 
