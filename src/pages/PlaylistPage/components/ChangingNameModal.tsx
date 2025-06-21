@@ -1,8 +1,8 @@
 import { Box, Modal, styled, TextField, Typography } from "@mui/material";
-import { BtnContainer } from "../../layout/ModalLayout";
+import { BtnContainer } from "../../../layout/ModalLayout";
 import { useState } from "react";
 import { useParams } from "react-router";
-import { useChangePlaylistDetail } from "../../hooks/useChangePlaylistDetail";
+import { useChangePlaylistDetail } from "../../../hooks/useChangePlaylistDetail";
 
 interface ChangingNameModalProps {
   childModal: boolean;

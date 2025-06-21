@@ -3,7 +3,7 @@ import { useOpenContext } from "../common/ContextProvider";
 import { useRemovePlaylistItems } from "../hooks/useRemovePlaylistItems";
 import { useUnfollowPlaylist } from "../hooks/useUnfollowPlaylist";
 import { useParams } from "react-router";
-import ChangingNameModal from "../components/playlist/ChangingNameModal";
+import ChangingNameModal from "../pages/PlaylistPage/components/ChangingNameModal";
 import { useState } from "react";
 
 const ModalLayout = () => {

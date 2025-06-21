@@ -1,11 +1,11 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import DesktopPlaylistItem from "../../components/playlist/DesktopPlaylistItem";
 import { PlaylistTrack } from "../../models/playlist";
 import { PAGE_LIMIT } from "../../configs/commonConfig";
 import { InfiniteData } from "@tanstack/react-query";
 import { useGetPlaylistItems } from "../../hooks/useGetPlaylistItems";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import DesktopPlaylistItem from "../../pages/PlaylistPage/components/DesktopPlaylistItem";
 
 interface PlaylistTrackListProps {
   id: string;

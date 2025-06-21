@@ -1,7 +1,7 @@
 import { Navigate, useParams } from "react-router";
 import { useGetPlaylist } from "../../hooks/useGetPlaylist";
 import { PlaylistDetailLayout } from "../../layout/playlist/PlaylistDetailLayout";
-import EmptyPlaylistWithSearch from "../../layout/playlist/EmptyPlaylistWithSearch";
+import EmptyPlaylistWithSearch from "./components/EmptyPlaylistWithSearch";
 import PlaylistTrackList from "../../layout/playlist/PlaylistTrackList";
 import { LoadingSpinner } from "../../common/components/LoadingSpinner";
 

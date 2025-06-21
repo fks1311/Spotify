@@ -1,12 +1,12 @@
 import { styled } from "@mui/material";
 import { useState } from "react";
-import { useSearchItemsByKeyword } from "../../hooks/useSearchItemsByKeyword";
-import { SEARCH_TYPE } from "../../models/search";
+import { useSearchItemsByKeyword } from "../../../hooks/useSearchItemsByKeyword";
+import { SEARCH_TYPE } from "../../../models/search";
 import { Box } from "@mui/system";
-import SearchResultList from "../../components/playlist/SearchResultList";
-import { LoadingSpinner } from "../../common/components/LoadingSpinner";
-import PlayListInSearchBar from "../../components/playlist/PlayListInSearchBar";
-import PlaylistTrackList from "./PlaylistTrackList";
+import SearchResultList from "./SearchResultList";
+import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
+import PlayListInSearchBar from "../../../layout/playlist/PlayListInSearchBar";
+import PlaylistTrackList from "../../../layout/playlist/PlaylistTrackList";
 
 interface PlaylistTrackListProps {
   id: string;

@@ -1,11 +1,11 @@
 import { styled, TableCell, TableRow } from "@mui/material";
-import { PlaylistTrack } from "../../models/playlist";
-import { IEpisode, ITrack } from "../../models/track";
 import moment from "moment";
 import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useOpenContext } from "../../common/ContextProvider";
 import { useParams } from "react-router";
+import { useOpenContext } from "../../../common/ContextProvider";
+import { PlaylistTrack } from "../../../models/playlist";
+import { IEpisode, ITrack } from "../../../models/track";
 
 // playlist page - 곡 리스트
 interface DesktopPlaylistItemProps {
@@ -15,7 +15,7 @@ interface DesktopPlaylistItemProps {
 const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
   const [cur, setCur] = useState<number>();
   const { id } = useParams<{ id: string }>();
-  const { modal, setModal } = useOpenContext();
+  const { setModal } = useOpenContext();
   const isEpisode = (track: ITrack | IEpisode | undefined): track is IEpisode => {
     return track !== undefined && "description" in track;
   };

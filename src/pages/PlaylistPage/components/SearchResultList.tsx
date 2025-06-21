@@ -1,9 +1,9 @@
 import { Box, Button, styled, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
-import { ITrack } from "../../models/track";
+import { ITrack } from "../../../models/track";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { useAddItemToPlaylist } from "../../hooks/useAddItemToPlaylist";
+import { useAddItemToPlaylist } from "../../../hooks/useAddItemToPlaylist";
 import { useParams } from "react-router";
 
 // playlist 검색 결과 화면
@@ -17,8 +17,6 @@ const SearchResultList = ({ list, hasNextPage, isFetchingNextPage, fetchNextPage
   const { ref, inView } = useInView();
   const { mutate: addItem } = useAddItemToPlaylist();
   const { id } = useParams<{ id: string }>();
-
-  const [hover, setHover] = useState(false);
 
   if (!list || list.length === 0) return null;
 
