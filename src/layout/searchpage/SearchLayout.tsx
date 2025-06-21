@@ -18,9 +18,10 @@ const SearchLayout = ({ children, keyword, setKeyword }: SearchLayoutProps) => {
 };
 
 const Layout = styled("div")({
+  width: "100%",
   position: "absolute",
   top: 15,
-  padding: "0 1rem",
+  // padding: "0 1rem",
 });
 
 export default SearchLayout;

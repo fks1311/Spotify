@@ -19,7 +19,7 @@ const DefaultSearchPage = () => {
         <Grid container spacing={2}>
           {addColorCategoris.map((category: any, idx: number) => (
             <Content key={category.id} size={{ xs: 12, sm: 6, md: 4 }}>
-              <Contentbox color={category.randomColor}>
+              <Contentbox color={category.randomColor} onClick={() => alert("진행 예정입니다")}>
                 <CategoryName
                   sx={{
                     fontSize: {
@@ -48,6 +48,7 @@ const DefaultSearchPage = () => {
 
 const Container = styled("div")({
   marginTop: "1rem",
+  padding: "0px 2rem 1rem 1rem",
 });
 const Content = styled(Grid)({});
 
@@ -60,6 +61,8 @@ const Contentbox = styled(Box)<ContentBoxStyleProps>(({ color }) => ({
   borderRadius: "10px",
   overflow: "hidden",
   aspectRatio: "2 / 1",
+  boxShadow: `rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;;`,
+  cursor: "pointer",
 }));
 const CategoryName = styled(Typography)({
   padding: "1rem",
