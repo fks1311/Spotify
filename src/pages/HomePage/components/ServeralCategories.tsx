@@ -1,10 +1,10 @@
 import { Box } from "@mui/system";
-import { useGetServeralCategories } from "../../hooks/useGetServeralCategories";
-import TrackListLayout from "../../layout/homepage/TrackListLayout";
-import { LoadingSpinner } from "../../common/components/LoadingSpinner";
-import { ListContainer } from "./NewReleases";
+import { useGetServeralCategories } from "../../../hooks/useGetServeralCategories";
+import TrackListLayout from "../../../layout/homepage/TrackListLayout";
+import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
 import { Typography } from "@mui/material";
-import Card from "../album/Card";
+import Card from "../../../components/album/Card";
+import { ListContainer } from "../../../common/style/ListContainer";
 
 const ServeralCategories = () => {
   const { data, isLoading } = useGetServeralCategories({ limit: 10, offset: 0 });

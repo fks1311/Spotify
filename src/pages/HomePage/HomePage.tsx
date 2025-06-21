@@ -1,9 +1,9 @@
 import { styled } from "@mui/material";
-import NewReleases from "../../components/homepage/NewReleases";
-import ServeralCategories from "../../components/homepage/ServeralCategories";
-import NewestArtist from "../../components/homepage/NewestArtist";
-import NewestPlaylist from "../../components/homepage/NewestPlaylist";
-import NewestAlbum from "../../components/homepage/NewestAlbum";
+import NewReleases from "./components/NewReleases";
+import ServeralCategories from "./components/ServeralCategories";
+import NewestArtist from "./components/NewestArtist";
+import NewestPlaylist from "./components/NewestPlaylist";
+import NewestAlbum from "./components/NewestAlbum";
 
 const HomePage = () => {
   return (

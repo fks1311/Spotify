@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { useSearchCategory } from "../../hooks/useSearchCategory";
-import TrackListLayout from "../../layout/homepage/TrackListLayout";
-import { SEARCH_TYPE } from "../../models/search";
-import { LoadingSpinner } from "../../common/components/LoadingSpinner";
-import { ListContainer } from "./NewReleases";
-import Card from "../album/Card";
+import { useSearchCategory } from "../../../hooks/useSearchCategory";
+import TrackListLayout from "../../../layout/homepage/TrackListLayout";
+import { SEARCH_TYPE } from "../../../models/search";
+import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
+import Card from "../../../components/album/Card";
+import { ListContainer } from "../../../common/style/ListContainer";
 
 const NewestArtist = () => {
   const { data, isLoading } = useSearchCategory({

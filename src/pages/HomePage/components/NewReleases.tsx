@@ -1,9 +1,10 @@
 import { Box, Grid, styled, Typography } from "@mui/material";
-import { useGetNewReleases } from "../../hooks/useGetNewReleases";
-import { ErrorMessage } from "../../common/components/ErrorMessage";
-import { LoadingSpinner } from "../../common/components/LoadingSpinner";
-import Card from "../../components/album/Card";
-import TrackListLayout from "../../layout/homepage/TrackListLayout";
+import { useGetNewReleases } from "../../../hooks/useGetNewReleases";
+import { ErrorMessage } from "../../../common/components/ErrorMessage";
+import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
+import Card from "../../../components/album/Card";
+import TrackListLayout from "../../../layout/homepage/TrackListLayout";
+import { ListContainer } from "../../../common/style/ListContainer";
 
 const NewReleases = () => {
   const { data, error, isLoading } = useGetNewReleases();
@@ -38,15 +39,4 @@ const NewReleases = () => {
   );
 };
 
-export const ListContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  overflowX: "scroll",
-  "&::-webkit-scrollbar": {
-    height: "4px",
-  },
-  "&::-webkit-scrollbar-thumb": {
-    background: theme.palette.action.hover,
-    borderRadius: "10px",
-  },
-}));
 export default NewReleases;
