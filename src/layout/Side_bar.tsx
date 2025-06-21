@@ -17,7 +17,7 @@ const Side_bar = () => {
                 Home
               </Typography>
             </StyledNavLink>
-            <StyledNavLink to={"/"}>
+            <StyledNavLink to={"/search"}>
               <SearchIcon />
               <Typography variant="h2" fontWeight={700}>
                 Search
