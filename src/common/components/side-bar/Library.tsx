@@ -1,13 +1,12 @@
 import { styled } from "@mui/material";
-import { LoadingSpinner } from "../../common/components/LoadingSpinner";
-import PlaylistItem from "./PlaylistItem";
-import { useGetCurrentUserPlaylists } from "../../hooks/useGetCurrentUserPlaylists";
-import { getLocalStorageSafe } from "../../utils/localStorage";
-import EmptyPlaylist from "./EmptyPlaylist";
+import { LoadingSpinner } from "../LoadingSpinner";
+import PlaylistItem from "./library-body/PlaylistItem";
+import { useGetCurrentUserPlaylists } from "../../../hooks/useGetCurrentUserPlaylists";
+import { getLocalStorageSafe } from "../../../utils/localStorage";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { ErrorMessage } from "../../common/components/ErrorMessage";
-import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
+import { useGetCurrentUserProfile } from "../../../hooks/useGetCurrentUserProfile";
+import EmptyPlaylist from "./library-body/EmptyPlaylist";
 
 interface ContainerProps {
   isMouseOver: boolean;
