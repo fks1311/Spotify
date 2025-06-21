@@ -30,7 +30,7 @@ const SearchBar = ({ keyword, setKeyword, placeholder }: SearchBarProps) => {
 };
 
 const Container = styled(TextField)({
-  width: "40%",
+  width: "90%",
   "& .MuiInputBase-root ": {
     borderRadius: "30px",
   },
