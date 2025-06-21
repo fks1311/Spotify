@@ -1,4 +1,4 @@
-import { Box, InputAdornment, styled, TextField } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import LoginButton from "../common/components/LoginButton";
 import { useGetCurrentUserProfile } from "../hooks/useGetCurrentUserProfile";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -6,9 +6,6 @@ import { getLocalStorageSafe } from "../utils/localStorage";
 import { useSetRecoilState } from "recoil";
 import { triggerAtom } from "../utils/atom";
 import { useQueryClient } from "@tanstack/react-query";
-import { useLocation } from "react-router";
-import SearchBar from "../common/components/SearchBar";
-import { useState } from "react";
 
 // trigger
 const Navbar = () => {
@@ -17,8 +14,6 @@ const Navbar = () => {
   const accessToken = getLocalStorageSafe("access_token");
   const url = new URL(window.location.href);
   const queryClient = useQueryClient();
-  const { pathname } = useLocation();
-  const [keyword, setKeyword] = useState<string>("");
 
   const logout = () => {
     window.localStorage.clear();
@@ -43,22 +38,12 @@ const Navbar = () => {
     );
   };
 
-  return (
-    <Container pathname={pathname}>
-      {pathname === "/search" && (
-        <SearchBar keyword={keyword} setKeyword={setKeyword} placeholder="어떤 컨텐츠를 감상하고 싶으세요?" />
-      )}
-      {!accessToken || !userProfile ? <LoginButton /> : <IsProfileImg />}
-    </Container>
-  );
+  return <Container>{!accessToken || !userProfile ? <LoginButton /> : <IsProfileImg />}</Container>;
 };
 
-interface ContainerStyleProps {
-  pathname: string;
-}
-const Container = styled(Box)<ContainerStyleProps>(({ pathname }) => ({
+const Container = styled(Box)(({}) => ({
   display: "flex",
-  justifyContent: pathname === "/search" ? "space-between" : "flex-end",
+  justifyContent: "flex-end",
   alignItems: "center",
   height: "64px",
 }));
