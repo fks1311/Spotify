@@ -1,5 +1,5 @@
 import { styled } from "@mui/material";
-import { useOpenContext } from "../../components/global/ContextProvider";
+import { useOpenContext } from "../ContextProvider";
 import { useParams } from "react-router";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useRef } from "react";

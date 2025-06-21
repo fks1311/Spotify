@@ -1,5 +1,5 @@
 import { Box, Modal, styled, Typography } from "@mui/material";
-import { useOpenContext } from "../components/global/ContextProvider";
+import { useOpenContext } from "../common/ContextProvider";
 import { useRemovePlaylistItems } from "../hooks/useRemovePlaylistItems";
 import { useUnfollowPlaylist } from "../hooks/useUnfollowPlaylist";
 import { useParams } from "react-router";

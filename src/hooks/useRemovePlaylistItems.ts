@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removePlaylistItems } from "../apis/playlistApi";
 import { RemovePlaylistItemsRequest } from "../models/playlist";
 import { useGetCurrentUserProfile } from "./useGetCurrentUserProfile";
-import { useOpenContext } from "../components/global/ContextProvider";
+import { useOpenContext } from "../common/ContextProvider";
 import { useParams } from "react-router";
 
 export const useRemovePlaylistItems = () => {

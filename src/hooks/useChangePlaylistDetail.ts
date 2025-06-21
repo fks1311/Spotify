@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { changePlaylistDetail } from "../apis/playlistApi";
 import { ChangePlaylistDetailRequest } from "../models/playlist";
-import { useOpenContext } from "../components/global/ContextProvider";
+import { useOpenContext } from "../common/ContextProvider";
 
 export const useChangePlaylistDetail = () => {
   const queryClient = useQueryClient();

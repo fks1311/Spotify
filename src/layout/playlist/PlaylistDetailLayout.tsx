@@ -6,7 +6,7 @@ import { forwardRef } from "react";
 import { PlaylistResponse } from "../../models/playlist";
 import ModalLayout from "../ModalLayout";
 import OptionButton from "../../common/components/OptionButton";
-import { useOpenContext } from "../../components/global/ContextProvider";
+import { useOpenContext } from "../../common/ContextProvider";
 
 interface PlaylistDetailLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   playlist: PlaylistResponse;

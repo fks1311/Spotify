@@ -4,7 +4,7 @@ import { IEpisode, ITrack } from "../../models/track";
 import moment from "moment";
 import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useOpenContext } from "../global/ContextProvider";
+import { useOpenContext } from "../../common/ContextProvider";
 import { useParams } from "react-router";
 
 // playlist page - 곡 리스트
