@@ -2,8 +2,8 @@ import { Navigate, useParams } from "react-router";
 import { useGetPlaylist } from "../../hooks/useGetPlaylist";
 import { PlaylistDetailLayout } from "../../layout/playlist/PlaylistDetailLayout";
 import EmptyPlaylistWithSearch from "./components/EmptyPlaylistWithSearch";
-import PlaylistTrackList from "../../layout/playlist/PlaylistTrackList";
 import { LoadingSpinner } from "../../common/components/LoadingSpinner";
+import PlaylistTrackItem from "./components/PlaylistTrackItem";
 
 // playlistpage
 const PlaylistDetailPage = () => {
@@ -22,7 +22,7 @@ const PlaylistDetailPage = () => {
 
   return (
     <PlaylistDetailLayout playlist={playlist!}>
-      {playlist?.tracks?.total === 0 ? <EmptyPlaylistWithSearch id={id} /> : <PlaylistTrackList id={id} />}
+      {playlist?.tracks?.total === 0 ? <EmptyPlaylistWithSearch id={id} /> : <PlaylistTrackItem id={id} />}
     </PlaylistDetailLayout>
   );
 };
