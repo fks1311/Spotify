@@ -3,7 +3,7 @@ import { useGetServeralCategories } from "../../../hooks/useGetServeralCategorie
 import TrackListLayout from "../../../layout/homepage/TrackListLayout";
 import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
 import { Typography } from "@mui/material";
-import Card from "../../../components/album/Card";
+import Card from "../../../common/components/Card";
 import { ListContainer } from "../../../common/style/ListContainer";
 
 const ServeralCategories = () => {

@@ -1,6 +1,6 @@
 import { Avatar, Box, styled } from "@mui/material";
 import { SimplifiedPlaylistObject } from "../../models/playlist";
-import { EllipsisTypography } from "../album/Card";
+import { EllipsisTypography } from "../../common/components/Card";
 import { useNavigate } from "react-router";
 
 interface PlaylistItemProps {

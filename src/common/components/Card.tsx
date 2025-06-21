@@ -1,6 +1,6 @@
 import { styled, Typography } from "@mui/material";
-import PlayButton from "./PlayButton";
 import theme from "../../theme";
+import PlayButton from "./PlayButton";
 
 interface CardProps {
   name: string;

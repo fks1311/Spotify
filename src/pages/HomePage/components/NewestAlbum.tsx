@@ -3,7 +3,7 @@ import { useSearchCategory } from "../../../hooks/useSearchCategory";
 import TrackListLayout from "../../../layout/homepage/TrackListLayout";
 import { SEARCH_TYPE } from "../../../models/search";
 import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
-import Card from "../../../components/album/Card";
+import Card from "../../../common/components/Card";
 import { ListContainer } from "../../../common/style/ListContainer";
 
 const NewestAlbum = () => {
