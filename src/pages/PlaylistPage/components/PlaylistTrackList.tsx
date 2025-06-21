@@ -5,12 +5,12 @@ import { useEffect } from "react";
 import { PAGE_LIMIT } from "../../../configs/commonConfig";
 import PlaylitTrackLayout from "../../../layout/playlist/PlaylitTrackLayout";
 import { PlaylistTrack } from "../../../models/playlist";
-import DesktopPlaylistItem from "./DesktopPlaylistItem";
+import TrackListItem from "./TrackListItem";
 
 interface PlaylistTrackListProps {
   id: string;
 }
-const PlaylistTrackItem = ({ id }: PlaylistTrackListProps) => {
+const PlaylistTrackList = ({ id }: PlaylistTrackListProps) => {
   const { ref, inView } = useInView({
     threshold: 0.1, // 약간이라도 보이면 감지
   });
@@ -34,7 +34,7 @@ const PlaylistTrackItem = ({ id }: PlaylistTrackListProps) => {
     <PlaylitTrackLayout>
       {playlistItems?.pages.map((page, pageIdx) =>
         page.items.map((item: PlaylistTrack, index: number) => {
-          return <DesktopPlaylistItem item={item} key={index} index={pageIdx * PAGE_LIMIT + index + 1} />;
+          return <TrackListItem item={item} key={index} index={pageIdx * PAGE_LIMIT + index + 1} />;
         })
       )}
       <TableRow sx={{ height: "5px" }} ref={ref}>
@@ -44,4 +44,4 @@ const PlaylistTrackItem = ({ id }: PlaylistTrackListProps) => {
   );
 };
 
-export default PlaylistTrackItem;
+export default PlaylistTrackList;

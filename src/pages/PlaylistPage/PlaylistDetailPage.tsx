@@ -3,7 +3,7 @@ import { useGetPlaylist } from "../../hooks/useGetPlaylist";
 import { PlaylistDetailLayout } from "../../layout/playlist/PlaylistDetailLayout";
 import EmptyPlaylistWithSearch from "./components/EmptyPlaylistWithSearch";
 import { LoadingSpinner } from "../../common/components/LoadingSpinner";
-import PlaylistTrackItem from "./components/PlaylistTrackItem";
+import PlaylistTrackList from "./components/PlaylistTrackList";
 
 // playlistpage
 const PlaylistDetailPage = () => {
@@ -22,7 +22,7 @@ const PlaylistDetailPage = () => {
 
   return (
     <PlaylistDetailLayout playlist={playlist!}>
-      {playlist?.tracks?.total === 0 ? <EmptyPlaylistWithSearch id={id} /> : <PlaylistTrackItem id={id} />}
+      {playlist?.tracks?.total === 0 ? <EmptyPlaylistWithSearch id={id} /> : <PlaylistTrackList id={id} />}
     </PlaylistDetailLayout>
   );
 };

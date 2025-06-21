@@ -6,7 +6,7 @@ import { Box } from "@mui/system";
 import SearchResultList from "./SearchResultList";
 import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
 import PlayListInSearchBar from "../../../layout/playlist/PlayListInSearchBar";
-import PlaylistTrackItem from "./PlaylistTrackItem";
+import PlaylistTrackList from "./PlaylistTrackList";
 
 interface PlaylistTrackListProps {
   id: string;
@@ -26,7 +26,7 @@ const EmptyPlaylistWithSearch = ({ id }: PlaylistTrackListProps) => {
 
   return (
     <>
-      {hasResult ? <PlaylistTrackItem id={id} /> : <></>}
+      {hasResult ? <PlaylistTrackList id={id} /> : <></>}
       <PlayListInSearchBar keyword={keyword} setKeyword={setKeyword} />
       {isLoading ? (
         <LoadingSpinner />

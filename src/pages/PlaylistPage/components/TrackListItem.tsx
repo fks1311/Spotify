@@ -8,11 +8,11 @@ import { PlaylistTrack } from "../../../models/playlist";
 import { IEpisode, ITrack } from "../../../models/track";
 
 // playlist page - 곡 리스트
-interface DesktopPlaylistItemProps {
+interface TrackListItemProps {
   index: number;
   item: PlaylistTrack;
 }
-const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
+const TrackListItem = ({ item, index }: TrackListItemProps) => {
   const [cur, setCur] = useState<number>();
   const { id } = useParams<{ id: string }>();
   const { setModal } = useOpenContext();
@@ -78,4 +78,4 @@ const DurationTableCell = styled(TableCell, {
   gap: "1rem",
 }));
 
-export default DesktopPlaylistItem;
+export default TrackListItem;
