@@ -7,7 +7,7 @@ import { useSetRecoilState } from "recoil";
 import { triggerAtom } from "../utils/atom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "react-router";
-import SearchBar from "../components/common/SearchBar";
+import SearchBar from "../common/components/SearchBar";
 import { useState } from "react";
 
 // trigger

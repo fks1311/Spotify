@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box, styled } from "@mui/system";
-import SearchBar from "../common/SearchBar";
+import SearchBar from "../../common/components/SearchBar";
 
 interface SearchBarProps {
   keyword: string;
