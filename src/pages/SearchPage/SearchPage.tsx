@@ -8,7 +8,7 @@ const SearchPage = () => {
 
   return (
     <SearchLayout keyword={keyword} setKeyword={setKeyword}>
-      {keyword === "" ? <DefaultSearchPage /> : <SearchWithPage />}
+      {keyword === "" ? <DefaultSearchPage /> : <SearchWithPage keyword={keyword} setKeyword={setKeyword} />}
     </SearchLayout>
   );
 };
