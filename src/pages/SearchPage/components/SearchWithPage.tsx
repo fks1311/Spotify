@@ -23,7 +23,7 @@ export default function SearchWithPage({ keyword, setKeyword }: SearchWithPagePr
   if (isLoading) return <LoadingSpinner />;
 
   const defaultValues = data?.pages[0];
-  const tracks = defaultValues?.tracks?.items?.filter(Boolean).slice(0, 5) ?? [];
+  const tracks = defaultValues?.tracks?.items?.filter(Boolean).slice(0, 4) ?? [];
   const artists = defaultValues?.artists?.items?.filter(Boolean).slice(0, 8) ?? [];
   const albums = defaultValues?.albums?.items?.filter(Boolean).slice(0, 8) ?? [];
   const playlists = defaultValues?.playlists?.items?.filter(Boolean).slice(0, 8) ?? [];
@@ -32,8 +32,20 @@ export default function SearchWithPage({ keyword, setKeyword }: SearchWithPagePr
 
   return (
     <Layout>
-      <Box sx={{ display: "flex", gap: "1rem" }}>
-        <TopItem />
+      <Box
+        sx={{
+          display: "flex",
+          gap: "1rem",
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "column",
+            lg: "row",
+            xl: "row",
+          },
+        }}
+      >
+        {artists.length > 0 && <TopItem artists={artists} />}
         {tracks.length > 0 && <TrackItem tracks={tracks} />}
       </Box>
       {artists.length > 0 && <ArtistItem artists={artists} />}
