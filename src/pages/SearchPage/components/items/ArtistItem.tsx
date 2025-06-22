@@ -27,8 +27,8 @@ const ArtistItem = ({ artists }: ArtistItemProps) => {
               </Overlay>
             </HoverLayout>
             <div>
-              <LineClamp2Text sx={{ fontSize: "1rem" }}>{artist.name}</LineClamp2Text>
-              <SecondayText sx={{ color: "#b3b3b3" }}>아티스트</SecondayText>
+              <LineClamp2Text>{artist.name}</LineClamp2Text>
+              <SecondayText>아티스트</SecondayText>
             </div>
           </Content>
         ))}
