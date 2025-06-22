@@ -56,5 +56,6 @@ const UlStyle = styled("ul")(({ theme }) => ({
   li: {
     padding: `0.5rem`,
   },
+  cursor: "pointer",
 }));
 export default OptionButton;
