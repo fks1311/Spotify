@@ -29,7 +29,7 @@ const TrackItem = ({ tracks }: TrackItemProps) => {
   );
 };
 
-const TrackLayout = styled(Box)({ display: "flex", flexDirection: "column", gap: "1rem" });
+const TrackLayout = styled(Box)({ display: "flex", flexDirection: "column", gap: "0.3rem" });
 const Track = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
