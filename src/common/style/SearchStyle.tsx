@@ -29,7 +29,7 @@ export const Overlay = styled("div")({
   transform: "translate3d(0px, 0px, 0px)",
   transition: "opacity 0.3s ease-in-out",
 });
-export const ItemImg = styled("img")({ height: "160px", width: "160px" });
+export const ItemImg = styled("img")({ height: "160px", width: "160px", borderRadius: "10px" });
 
 // 2줄 말줄임
 export const LineClamp2Text = styled(Typography)({

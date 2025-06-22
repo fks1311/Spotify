@@ -21,7 +21,7 @@ const ArtistItem = ({ artists }: ArtistItemProps) => {
         {artists.map((artist) => (
           <Content key={artist.id}>
             <HoverLayout>
-              <ItemImg src={artist?.images?.[0]?.url} />
+              <ItemImg src={artist?.images?.[0]?.url} sx={{ borderRadius: "50%" }} />
               <Overlay className="overlay">
                 <PlayButton />
               </Overlay>
