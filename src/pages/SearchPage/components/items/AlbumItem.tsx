@@ -15,7 +15,6 @@ interface AlbumItemProps {
   albums: SimplifiedAlbumObject[];
 }
 const AlbumItem = ({ albums }: AlbumItemProps) => {
-  console.log(albums);
   return (
     <ItemLayout title="앨범" width="100%">
       <Layout>
