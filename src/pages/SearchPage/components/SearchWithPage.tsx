@@ -22,6 +22,14 @@ export default function SearchWithPage({ keyword, setKeyword }: SearchWithPagePr
 
   if (isLoading) return <LoadingSpinner />;
 
+  const validEntries = data?.pages.map((item) =>
+    Object.entries(item).map((data) => {
+      return data[1]?.items.length;
+    })
+  );
+
+  const hasResult = validEntries?.every((data) => data[0] > 0);
+
   const defaultValues = data?.pages[0];
   const tracks = defaultValues?.tracks?.items?.filter(Boolean).slice(0, 4) ?? [];
   const artists = defaultValues?.artists?.items?.filter(Boolean).slice(0, 8) ?? [];
@@ -32,6 +40,7 @@ export default function SearchWithPage({ keyword, setKeyword }: SearchWithPagePr
 
   return (
     <Layout>
+      {!hasResult && <div>"{keyword}"와(과) 일치하는 결과가 없습니다.</div>}
       <Box
         sx={{
           display: "flex",
