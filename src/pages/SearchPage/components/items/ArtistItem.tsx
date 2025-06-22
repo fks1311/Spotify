@@ -50,7 +50,7 @@ const HoverLayout = styled("div")({
 });
 const ArtistImg = styled("img")({
   height: "160px",
-  width: "100%",
+  width: "160px",
   borderRadius: "50%",
 });
 
