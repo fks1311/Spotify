@@ -1,7 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { useSearchItemsByKeyword } from "../../../hooks/useSearchItemsByKeyword";
 import { SEARCH_TYPE } from "../../../models/search";
-import { useSearchCategory } from "../../../hooks/useSearchCategory";
 import TopItem from "./items/TopItem";
 import TrackItem from "./items/TrackItem";
 import ArtistItem from "./items/ArtistItem";
@@ -9,6 +8,7 @@ import AlbumItem from "./items/AlbumItem";
 import PlaylistItem from "./items/PlaylistItem";
 import PodcastItem from "./items/PodcastItem";
 import EpisodeItem from "./items/EpisodeItem";
+import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
 
 interface SearchWithPageProps {
   keyword: string;
@@ -19,6 +19,8 @@ export default function SearchWithPage({ keyword, setKeyword }: SearchWithPagePr
     q: keyword,
     type: Object.values(SEARCH_TYPE),
   });
+
+  if (isLoading) return <LoadingSpinner />;
 
   const defaultValues = data?.pages[0];
   const tracks = defaultValues?.tracks?.items?.filter(Boolean).slice(0, 5) ?? [];
