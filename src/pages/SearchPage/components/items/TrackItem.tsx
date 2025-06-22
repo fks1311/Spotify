@@ -8,7 +8,7 @@ interface TrackItemProps {
 }
 const TrackItem = ({ tracks }: TrackItemProps) => {
   return (
-    <ItemLayout title="곡" width="70%">
+    <ItemLayout title="곡" width={{ xs: "100%", sm: "100%", md: "100%", lg: "70%", xl: "70%" }}>
       <TrackLayout>
         {tracks?.map((track) => (
           <Track key={track.id} onClick={() => alert("진행 예정입니다")}>

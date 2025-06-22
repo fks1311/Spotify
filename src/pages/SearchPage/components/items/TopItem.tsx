@@ -8,7 +8,7 @@ interface ArtistItemProps {
 }
 const TopItem = ({ artists }: ArtistItemProps) => {
   return (
-    <ItemLayout title="상위 결과" width="30%">
+    <ItemLayout title="상위 결과" width={{ xs: "100%", sm: "100%", md: "100%", lg: "30%", xl: "30%" }}>
       <Layout onClick={() => alert("진행 예정입니다")}>
         <ArtistImg src={artists?.[0]?.images?.[0].url} />
         <TextContainer>
