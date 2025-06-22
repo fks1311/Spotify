@@ -16,7 +16,9 @@ const TrackItem = ({ tracks }: TrackItemProps) => {
               <Avatar variant="square" src={track.album?.images[0].url} sx={{ borderRadius: "10px" }} />
               <div>
                 <Typography variant="body1">{track.name}</Typography>
-                <Typography variant="body2">{track?.artists?.[0]?.name ?? "No name"}</Typography>
+                <Typography variant="body2" sx={{ color: "#b3b3b3" }}>
+                  {track?.artists?.[0]?.name ?? "No name"}
+                </Typography>
               </div>
             </Left>
             <div>{moment(track.duration_ms).format("mm:ss")}</div>

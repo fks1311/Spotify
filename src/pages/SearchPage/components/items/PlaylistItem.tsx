@@ -15,7 +15,6 @@ interface PlaylistItemProps {
   playlists: SimplifiedPlaylistObject[];
 }
 const PlaylistItem = ({ playlists }: PlaylistItemProps) => {
-  console.log(playlists);
   return (
     <ItemLayout title="플레이리스트" width="100%">
       <Layout>
@@ -27,8 +26,10 @@ const PlaylistItem = ({ playlists }: PlaylistItemProps) => {
                 <PlayButton />
               </Overlay>
             </HoverLayout>
-            <LineClamp2Text>{playlist.name}</LineClamp2Text>
-            <SecondayText>{`만든 사람: ${playlist.owner?.display_name}`}</SecondayText>
+            <div>
+              <LineClamp2Text>{playlist.name}</LineClamp2Text>
+              <SecondayText>{`만든 사람: ${playlist.owner?.display_name}`}</SecondayText>
+            </div>
           </Content>
         ))}
       </Layout>
