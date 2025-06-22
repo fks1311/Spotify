@@ -19,7 +19,7 @@ const PlaylistItem = ({ playlists }: PlaylistItemProps) => {
     <ItemLayout title="플레이리스트" width="100%">
       <Layout>
         {playlists.map((playlist) => (
-          <Content key={playlist.id}>
+          <Content key={playlist.id} onClick={() => alert("진행 예정입니다")}>
             <HoverLayout>
               <ItemImg src={playlist?.images?.[0].url} />
               <Overlay className="overlay">

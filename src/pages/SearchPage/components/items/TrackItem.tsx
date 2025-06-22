@@ -11,7 +11,7 @@ const TrackItem = ({ tracks }: TrackItemProps) => {
     <ItemLayout title="곡" width="70%">
       <TrackLayout>
         {tracks?.map((track) => (
-          <Track key={track.id}>
+          <Track key={track.id} onClick={() => alert("진행 예정입니다")}>
             <Left className="track-in-box">
               <Avatar variant="square" src={track.album?.images[0].url} sx={{ borderRadius: "10px" }} />
               <div>

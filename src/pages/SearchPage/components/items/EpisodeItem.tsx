@@ -21,7 +21,7 @@ const EpisodeItem = ({ episodes }: EpisodeItemProps) => {
     <ItemLayout title="에피소드" width="100%">
       <Layout>
         {episodes.map((episode) => (
-          <Content key={episode.id}>
+          <Content key={episode.id} onClick={() => alert("진행 예정입니다")}>
             <HoverLayout>
               <ItemImg src={episode.images[0].url} />
               <Overlay className="overlay">

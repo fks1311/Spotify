@@ -19,7 +19,7 @@ const AlbumItem = ({ albums }: AlbumItemProps) => {
     <ItemLayout title="앨범" width="100%">
       <Layout>
         {albums.map((album) => (
-          <Content key={album.id}>
+          <Content key={album.id} onClick={() => alert("진행 예정입니다")}>
             <HoverLayout>
               <ItemImg src={album.images[0].url} />
               <Overlay className="overlay">

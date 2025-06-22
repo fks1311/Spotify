@@ -19,7 +19,7 @@ const PodcastItem = ({ podcasts }: PodcastItemProps) => {
     <ItemLayout title="팟캐스트" width="100%">
       <Layout>
         {podcasts.map((podcast) => (
-          <Content key={podcast.id}>
+          <Content key={podcast.id} onClick={() => alert("진행 예정입니다")}>
             <HoverLayout>
               <ItemImg src={podcast.images[0].url} />
               <Overlay className="overlay">

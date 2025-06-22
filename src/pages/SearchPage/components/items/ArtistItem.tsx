@@ -19,7 +19,7 @@ const ArtistItem = ({ artists }: ArtistItemProps) => {
     <ItemLayout title="아티스트" width="100%">
       <Layout>
         {artists.map((artist) => (
-          <Content key={artist.id}>
+          <Content key={artist.id} onClick={() => alert("진행 예정입니다")}>
             <HoverLayout>
               <ItemImg src={artist?.images?.[0]?.url} sx={{ borderRadius: "50%" }} />
               <Overlay className="overlay">
