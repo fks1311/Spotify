@@ -30,11 +30,19 @@ const TrackItem = ({ tracks }: TrackItemProps) => {
 };
 
 const TrackLayout = styled(Box)({ display: "flex", flexDirection: "column", gap: "1rem" });
-const Track = styled(Box)({
+const Track = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-});
+  padding: "0.5rem",
+  borderRadius: "10px",
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
+    transform: "translate3d(0px, 0px, 0px)",
+    transition: "opacity 0.3s ease-in-out",
+    cursor: "pointer",
+  },
+}));
 const Left = styled("div")({
   display: "flex",
   gap: "1rem",
