@@ -1,7 +1,7 @@
 import { Box, styled, Typography } from "@mui/material";
 import ItemLayout from "../../../../layout/searchpage/ItemLayout";
 import { Artist } from "../../../../models/artist";
-import { SecondayText } from "../../../../common/style/SearchStyle";
+import { SecondayText } from "../../../../style/SearchStyle";
 
 interface ArtistItemProps {
   artists: Artist[];

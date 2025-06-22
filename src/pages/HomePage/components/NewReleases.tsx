@@ -4,7 +4,7 @@ import { ErrorMessage } from "../../../common/components/ErrorMessage";
 import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
 import Card from "../../../common/components/Card";
 import TrackListLayout from "../../../layout/homepage/TrackListLayout";
-import { ListContainer } from "../../../common/style/ListContainer";
+import { ListContainer } from "../../../style/ListContainer";
 
 const NewReleases = () => {
   const { data, error, isLoading } = useGetNewReleases();

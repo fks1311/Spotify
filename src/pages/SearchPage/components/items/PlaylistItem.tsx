@@ -7,7 +7,7 @@ import {
   LineClamp2Text,
   Overlay,
   SecondayText,
-} from "../../../../common/style/SearchStyle";
+} from "../../../../style/SearchStyle";
 import ItemLayout from "../../../../layout/searchpage/ItemLayout";
 import { SimplifiedPlaylistObject } from "../../../../models/playlist";
 

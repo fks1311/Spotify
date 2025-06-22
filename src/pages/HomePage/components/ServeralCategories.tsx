@@ -4,7 +4,7 @@ import TrackListLayout from "../../../layout/homepage/TrackListLayout";
 import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
 import { Typography } from "@mui/material";
 import Card from "../../../common/components/Card";
-import { ListContainer } from "../../../common/style/ListContainer";
+import { ListContainer } from "../../../style/ListContainer";
 
 const ServeralCategories = () => {
   const { data, isLoading } = useGetServeralCategories({ limit: 10, offset: 0 });

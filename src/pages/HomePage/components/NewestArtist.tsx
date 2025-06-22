@@ -4,7 +4,7 @@ import TrackListLayout from "../../../layout/homepage/TrackListLayout";
 import { SEARCH_TYPE } from "../../../models/search";
 import { LoadingSpinner } from "../../../common/components/LoadingSpinner";
 import Card from "../../../common/components/Card";
-import { ListContainer } from "../../../common/style/ListContainer";
+import { ListContainer } from "../../../style/ListContainer";
 
 const NewestArtist = () => {
   const { data, isLoading } = useSearchCategory({

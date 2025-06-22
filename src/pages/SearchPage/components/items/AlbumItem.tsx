@@ -9,7 +9,7 @@ import {
   LineClamp2Text,
   Overlay,
   SecondayText,
-} from "../../../../common/style/SearchStyle";
+} from "../../../../style/SearchStyle";
 
 interface AlbumItemProps {
   albums: SimplifiedAlbumObject[];
