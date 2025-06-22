@@ -1,7 +1,7 @@
 import { Button, Card, styled, Typography } from "@mui/material";
-import { useGetCurrentUserProfile } from "../../../../hooks/useGetCurrentUserProfile";
-import { useCreatePlaylist } from "../../../../hooks/useCreatePlaylist";
-import { getSpotifyAuthUrl } from "../../../../utils/getSpotifyAuthUrl";
+import { useGetCurrentUserProfile } from "../../../hooks/useGetCurrentUserProfile";
+import { useCreatePlaylist } from "../../../hooks/useCreatePlaylist";
+import { getSpotifyAuthUrl } from "../../../utils/getSpotifyAuthUrl";
 
 const EmptyPlaylist = () => {
   const { data: userProfile } = useGetCurrentUserProfile();

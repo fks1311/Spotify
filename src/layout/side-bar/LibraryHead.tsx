@@ -1,9 +1,9 @@
 import { Box, styled, Typography, Button } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AddIcon from "@mui/icons-material/Add";
-import { useCreatePlaylist } from "../../../hooks/useCreatePlaylist";
-import { useGetCurrentUserProfile } from "../../../hooks/useGetCurrentUserProfile";
-import { getSpotifyAuthUrl } from "../../../utils/getSpotifyAuthUrl";
+import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
+import { useCreatePlaylist } from "../../hooks/useCreatePlaylist";
+import { getSpotifyAuthUrl } from "../../utils/getSpotifyAuthUrl";
 
 const LibraryHead = () => {
   const { data: userProfile } = useGetCurrentUserProfile();

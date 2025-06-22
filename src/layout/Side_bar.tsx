@@ -2,8 +2,8 @@ import { Box, styled, Typography } from "@mui/material";
 import { NavLink } from "react-router";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
-import Library from "../common/components/side-bar/Library";
-import LibraryHead from "../common/components/side-bar/LibraryHead";
+import LibraryHead from "./side-bar/LibraryHead";
+import Library from "./side-bar/Library";
 
 const Side_bar = () => {
   return (
