@@ -16,7 +16,7 @@ export const getSpotifyAuthUrl = async () => {
   const authUrl = new URL("https://accounts.spotify.com/authorize"); // spotify 제공용
 
   // generated in the previous step
-  window.localStorage.setItem("code_verifier", codeVerifier);
+  window.sessionStorage.setItem("code_verifier", codeVerifier);
 
   if (clientId && redirectUri) {
     const params: AuthUrlParams = {

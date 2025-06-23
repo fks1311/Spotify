@@ -9,9 +9,9 @@ export const useExchangeToken = () => {
       return exchageToken(code, codeVerifier);
     },
     onSuccess: (data) => {
-      localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("refresh_token", data.refresh_token);
-      localStorage.setItem("expires_at", (Date.now() + data.expires_in * 1000).toString());
+      sessionStorage.setItem("access_token", data.access_token);
+      sessionStorage.setItem("refresh_token", data.refresh_token);
+      sessionStorage.setItem("expires_at", (Date.now() + data.expires_in * 1000).toString());
     },
   });
 };
@@ -22,9 +22,9 @@ export const useExchangeRefreshToken = () => {
       return getRefreshToken(refreshToken);
     },
     onSuccess: (data) => {
-      localStorage.setItem("access_token", data.access_token);
+      sessionStorage.setItem("access_token", data.access_token);
       if (data.refresh_token) {
-        localStorage.setItem("refresh_token", data.refresh_token);
+        sessionStorage.setItem("refresh_token", data.refresh_token);
       }
     },
   });

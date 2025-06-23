@@ -3,7 +3,6 @@ import PlaylistItem from "./library-body/PlaylistItem";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import EmptyPlaylist from "./library-body/EmptyPlaylist";
-import { getLocalStorageSafe } from "../../utils/localStorage";
 import { useGetCurrentUserProfile } from "../../hooks/useGetCurrentUserProfile";
 import { useGetCurrentUserPlaylists } from "../../hooks/useGetCurrentUserPlaylists";
 import { LoadingSpinner } from "../../common/components/LoadingSpinner";
@@ -13,7 +12,6 @@ interface ContainerProps {
 }
 const Library = () => {
   const { ref, inView } = useInView();
-  const accessToken = getLocalStorageSafe("access_token");
   const { data: user } = useGetCurrentUserProfile();
 
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage, error } = useGetCurrentUserPlaylists({

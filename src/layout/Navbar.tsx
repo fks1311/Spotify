@@ -2,7 +2,7 @@ import { Box, styled } from "@mui/material";
 import LoginButton from "../common/components/LoginButton";
 import { useGetCurrentUserProfile } from "../hooks/useGetCurrentUserProfile";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { getLocalStorageSafe } from "../utils/localStorage";
+import { getSessionStorageSafe } from "../utils/sessionStorage";
 import { useSetRecoilState } from "recoil";
 import { triggerAtom } from "../utils/atom";
 import { useQueryClient } from "@tanstack/react-query";
@@ -11,12 +11,12 @@ import { useQueryClient } from "@tanstack/react-query";
 const Navbar = () => {
   const setTrigger = useSetRecoilState(triggerAtom);
   const { data: userProfile } = useGetCurrentUserProfile();
-  const accessToken = getLocalStorageSafe("access_token");
+  const accessToken = getSessionStorageSafe("access_token");
   const url = new URL(window.location.href);
   const queryClient = useQueryClient();
 
   const logout = () => {
-    window.localStorage.clear();
+    window.sessionStorage.clear();
     url.search = "";
     window.history.replaceState(null, "", url.toString());
     queryClient.removeQueries();

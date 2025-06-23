@@ -4,7 +4,7 @@ import { User } from "../models/user";
 
 /** 프로필 정보를 가져오는 커스텀 훅입니다. */
 export const useGetCurrentUserProfile = (): UseQueryResult<User, Error> => {
-  const access_token = localStorage.getItem("access_token");
+  const access_token = sessionStorage.getItem("access_token");
 
   return useQuery({
     queryKey: ["current-user-profile"],
