@@ -2,6 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useClientCredentialToken } from "./useClientCredentialToken";
 import { searchCategory } from "../apis/searchApi";
 import { SearchRequestParams } from "../models/search";
+import { toast } from "react-toastify";
 
 export const useSearchCategory = (params: SearchRequestParams) => {
   const clientCredentialToken = useClientCredentialToken();
@@ -9,7 +10,10 @@ export const useSearchCategory = (params: SearchRequestParams) => {
   return useInfiniteQuery({
     queryKey: ["search-category", params],
     queryFn: ({ pageParam = 0 }) => {
-      if (!clientCredentialToken) throw new Error("No Token available");
+      if (!clientCredentialToken)
+        throw toast.error("인증 토큰이 없습니다. 로그인 상태를 확인하거나 토큰 발급 과정을 점검하세요.", {
+          toastId: "fetch-clientCredentialToken-error",
+        });
       return searchCategory(clientCredentialToken, { ...params });
     },
     initialPageParam: 0,

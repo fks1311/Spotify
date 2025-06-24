@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 // 1. 타입 정의
 interface ModalState {
@@ -35,7 +36,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
 export const useOpenContext = () => {
   const context = useContext(OpenContext);
   if (!context) {
-    throw new Error("useOpenContext 애러");
+    throw toast.error("컨텍스트를 찾을 수 없습니다. 올바른 Provider 내부에서 호출되었는지 점검하세요.");
   }
   return context;
 };
