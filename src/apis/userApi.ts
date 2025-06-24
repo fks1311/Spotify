@@ -7,6 +7,6 @@ export const getCurrentUserProfile = async (): Promise<User> => {
     const response = await api.get(`/me`);
     return response.data;
   } catch (error) {
-    throw new Error("fail to fetch user profile");
+    throw error;
   }
 };

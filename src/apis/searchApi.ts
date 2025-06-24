@@ -21,7 +21,7 @@ export const searchItemsByKeyword = async (token: string, params: SearchRequestP
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to search by keyword");
+    throw error;
   }
 };
 
@@ -36,6 +36,6 @@ export const searchCategory = async (token: string, params: SearchRequestParams)
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to search Category");
+    throw error;
   }
 };

@@ -16,6 +16,6 @@ export const getServeralCategories = async (
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to get several categories");
+    throw error;
   }
 };

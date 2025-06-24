@@ -2,6 +2,7 @@ import axios from "axios";
 import { ExchageTokenResponse, IClientCredentialTokenResponse } from "../models/auth";
 import { CLIENT_ID, CLIENT_SECRET } from "../configs/authConfig";
 import { LOCAL_REDIRECT_URI, PROD_REDIRECT_URI } from "../configs/commonConfig";
+import { toast } from "react-toastify";
 
 const encodedBase64 = (data: string): string => {
   if (typeof window !== "undefined") {
@@ -28,7 +29,7 @@ export const getClientCredentialToken = async (): Promise<IClientCredentialToken
     const response = await axios.post("https://accounts.spotify.com/api/token", body, headers);
     return response.data;
   } catch (error) {
-    throw new Error("Fail to fetch Spotify Client Token");
+    throw error;
   }
 };
 
@@ -38,7 +39,10 @@ export const exchageToken = async (code: string, codeVerifier: string): Promise<
   try {
     const url = "https://accounts.spotify.com/api/token";
 
-    if (!CLIENT_ID || !LOCAL_REDIRECT_URI || !PROD_REDIRECT_URI) throw new Error("Missing required parameters"); // CLIENT_ID나 REDIRECT_URI가 undefined면 fetch 에러 발생하니까 미리 throw Error 설정
+    if (!CLIENT_ID || !LOCAL_REDIRECT_URI || !PROD_REDIRECT_URI)
+      throw toast.error(
+        "필수 환경 변수가 설정되어 있지 않습니다. CLIENT_ID, LOCAL_REDIRECT_URI, PROD_REDIRECT_URI를 확인해주세요."
+      ); // CLIENT_ID나 REDIRECT_URI가 undefined면 fetch 에러 발생하니까 미리 throw Error 설정
     const body = new URLSearchParams({
       client_id: CLIENT_ID,
       grant_type: "authorization_code",
@@ -54,7 +58,7 @@ export const exchageToken = async (code: string, codeVerifier: string): Promise<
     });
     return response.data;
   } catch (error) {
-    throw new Error("Fail to fetch Access Token");
+    throw error;
   }
 };
 
@@ -78,6 +82,6 @@ export const getRefreshToken = async (refreshToken: string) => {
 
     return response.data;
   } catch (error) {
-    throw new Error("Fail to fetch Refresh Token");
+    throw error;
   }
 };

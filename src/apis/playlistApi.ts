@@ -25,7 +25,7 @@ export const getCurrentUserPlaylists = async ({
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to fetch current user playlists.");
+    throw error;
   }
 };
 
@@ -36,7 +36,7 @@ export const getPlaylist = async (params: GetPlaylistRequest): Promise<PlaylistR
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to fetch playlist detail");
+    throw error;
   }
 };
 
@@ -51,7 +51,7 @@ export const getPlaylistItems = async ({
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to fetch playlist items");
+    throw error;
   }
 };
 
@@ -66,7 +66,7 @@ export const createPlaylist = async (user_id: string, params: CreatePlaylistRequ
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to create playlists");
+    throw error;
   }
 };
 
@@ -79,7 +79,7 @@ export const addItemToPlaylist = async (params: AddItemToPlaylistRequest): Promi
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to add item to playlist.");
+    throw error;
   }
 };
 
@@ -94,7 +94,7 @@ export const removePlaylistItems = async (params: RemovePlaylistItemsRequest): P
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to remove playlist items.");
+    throw error;
   }
 };
 
@@ -107,7 +107,7 @@ export const UnfollowPlaylist = async (params: UnfollowPlaylistRequest) => {
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to unfollow playlist");
+    throw error;
   }
 };
 
@@ -118,6 +118,6 @@ export const changePlaylistDetail = async (params: ChangePlaylistDetailRequest) 
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to change playlist Detail");
+    throw error;
   }
 };
