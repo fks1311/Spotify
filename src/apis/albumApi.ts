@@ -15,3 +15,24 @@ export const getNewReleases = async (clientCredentialToken: string): Promise<IGe
     throw error;
   }
 };
+
+interface getAlbumTracksProps {
+  token: string;
+  id: string;
+  limit?: number;
+  offset: number;
+}
+export const getAlbumTracks = async (params: getAlbumTracksProps) => {
+  try {
+    const { token, id, limit, offset } = params;
+    const response = await axios.get(`https://api.spotify.com/v1/albums/${id}/tracks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: { limit, offset },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   AddItemToPlaylistRequest,
   BasePlaylistResponse,
@@ -115,6 +116,20 @@ export const changePlaylistDetail = async (params: ChangePlaylistDetailRequest) 
   try {
     const response = await api.put(`/playlists/${params.playlist_id}`, {
       name: params.name,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getTracks = async (params: { token: string; id: string }) => {
+  try {
+    const { token, id } = params;
+    const response = await axios.get(`https://api.spotify.com/v1/tracks/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
     return response.data;
   } catch (error) {
