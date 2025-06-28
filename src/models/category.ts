@@ -11,7 +11,7 @@ export interface GetServeralCategoriesResponse {
   categories: ApiResponse<Categories>;
 }
 
-interface Categories {
+export interface Categories {
   href: string;
   icons: Image[];
   id: string;
