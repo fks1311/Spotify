@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { triggerAtom } from "./utils/atom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Song from "./pages/ExplorePage/song/Song";
 const AppLayout = React.lazy(() => import("./layout/AppLayout"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage/SearchPage"));
@@ -36,8 +37,9 @@ function App() {
           <Route path="/" element={<AppLayout />}>
             <Route index element={<HomePage />} />
             <Route path="search" element={<SearchPage />} />
-            <Route path="playlist/:id" element={<PlaylistDetailPage />} />
             <Route path="/playlist" element={<PlaylistPage />} />
+            <Route path="playlist/:id" element={<PlaylistDetailPage />} />
+            <Route path="/explore/track/:id" element={<Song />} />
           </Route>
         </Routes>
       </Suspense>
