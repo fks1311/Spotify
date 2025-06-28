@@ -2,16 +2,19 @@ import { Avatar, Box, styled, Typography } from "@mui/material";
 import ItemLayout from "../../../../layout/searchpage/ItemLayout";
 import { ITrack } from "../../../../models/track";
 import moment from "moment";
+import { useNavigate } from "react-router";
 
 interface TrackItemProps {
   tracks: ITrack[];
 }
 const TrackItem = ({ tracks }: TrackItemProps) => {
+  const navigate = useNavigate();
+
   return (
     <ItemLayout title="곡" width={{ xs: "100%", sm: "100%", md: "100%", lg: "70%", xl: "70%" }}>
       <TrackLayout>
         {tracks?.map((track) => (
-          <Track key={track.id} onClick={() => alert("진행 예정입니다")}>
+          <Track key={track.id} onClick={() => navigate(`/explore/track/${track.id}`)}>
             <Left className="track-in-box">
               <Avatar variant="square" src={track.album?.images[0].url} sx={{ borderRadius: "10px" }} />
               <div>
