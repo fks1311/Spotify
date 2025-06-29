@@ -28,7 +28,12 @@ const NewReleases = () => {
                 marginBottom: "10px",
               }}
             >
-              <Card image={album.images[0].url} name={album.name} artistName={album.artists[0].name} />
+              <Card
+                image={album.images[0].url}
+                name={album.name}
+                artistName={album.artists[0].name}
+                path={`album/${album.id}`}
+              />
             </Box>
           ))}
         </ListContainer>

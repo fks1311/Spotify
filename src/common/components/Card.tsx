@@ -1,15 +1,18 @@
 import { styled, Typography } from "@mui/material";
 import theme from "../../theme";
 import PlayButton from "./PlayButton";
+import { useNavigate } from "react-router";
 
 interface CardProps {
   name: string;
   image: string;
+  path?: string;
   artistName?: string | undefined;
 }
-const Card = ({ image, name, artistName }: CardProps) => {
+const Card = ({ image, name, artistName, path }: CardProps) => {
+  const navigate = useNavigate();
   return (
-    <Container onClick={() => alert("진행 예정입니다")}>
+    <Container onClick={() => (path === undefined ? alert("진행 예정입니다") : navigate(`/explore/${path}`))}>
       <HoverLayout>
         <AlbumImg src={image} />
         <Overlay className="overlay">

@@ -30,7 +30,7 @@ const NewestPlaylist = () => {
                     marginBottom: "10px",
                   }}
                 >
-                  <Card name={artist.name} image={artist.images[0].url} />
+                  <Card name={artist.name} image={artist.images[0].url} path={`playlist/${artist.id}`} />
                 </Box>
               );
             }
