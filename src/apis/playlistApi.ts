@@ -136,3 +136,31 @@ export const getTracks = async (params: { token: string; id: string }) => {
     throw error;
   }
 };
+
+export const getArtist = async (params: { token: string; id: string }) => {
+  try {
+    const { token, id } = params;
+    const response = await axios.get(`https://api.spotify.com/v1/artists/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getArtistTopTracks = async (params: { token: string; id: string }) => {
+  try {
+    const { token, id } = params;
+    const response = await axios.get(`https://api.spotify.com/v1/artists/${id}/top-tracks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

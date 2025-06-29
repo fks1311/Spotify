@@ -2,14 +2,16 @@ import { Box, styled, Typography } from "@mui/material";
 import ItemLayout from "../../../../layout/searchpage/ItemLayout";
 import { Artist } from "../../../../models/artist";
 import { SecondayText } from "../../../../style/SearchStyle";
+import { useNavigate } from "react-router";
 
 interface ArtistItemProps {
   artists: Artist[];
 }
 const TopItem = ({ artists }: ArtistItemProps) => {
+  const navigate = useNavigate();
   return (
     <ItemLayout title="상위 결과" width={{ xs: "100%", sm: "100%", md: "100%", lg: "30%", xl: "30%" }}>
-      <Layout onClick={() => alert("진행 예정입니다")}>
+      <Layout onClick={() => navigate(`/explore/artist/${artists?.[0].id}`)}>
         <ArtistImg src={artists?.[0]?.images?.[0].url} />
         <TextContainer>
           <Typography variant="h1" sx={{ fontWeight: 700 }}>
