@@ -10,16 +10,18 @@ import {
   Overlay,
   SecondayText,
 } from "../../../../style/SearchStyle";
+import { useNavigate } from "react-router";
 
 interface ArtistItemProps {
   artists: Artist[];
 }
 const ArtistItem = ({ artists }: ArtistItemProps) => {
+  const navigate = useNavigate();
   return (
     <ItemLayout title="아티스트" width="100%">
       <Layout>
-        {artists.map((artist) => (
-          <Content key={artist.id} onClick={() => alert("진행 예정입니다")}>
+        {artists.map((artist, idx) => (
+          <Content key={artist.id} onClick={() => navigate(`/explore/artist/${artists?.[idx].id}`)}>
             <HoverLayout>
               <ItemImg src={artist?.images?.[0]?.url} sx={{ borderRadius: "50%" }} />
               <Overlay className="overlay">
