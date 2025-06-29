@@ -4,8 +4,6 @@ import { useGetArtistTopTracks } from "../../../hooks/useGetArtistTopTracks";
 import { useParams } from "react-router";
 import { useGetArtist } from "../../../hooks/useGetArtist";
 import moment from "moment";
-import { Artist } from "../../../models/artist";
-import { IGetNewReleasesResponse, SimplifiedAlbumObject } from "../../../models/album";
 
 const ExploreArtist = () => {
   const { id } = useParams<{ id: string }>();
