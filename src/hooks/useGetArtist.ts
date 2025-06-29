@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useClientCredentialToken } from "./useClientCredentialToken";
 import { toast } from "react-toastify";
-import { getArtist } from "../apis/playlistApi";
+import { getArtist } from "../apis/ArtistApi";
 
 export const useGetArtist = ({ id }: { id: string }) => {
   const clientCredentialToken = useClientCredentialToken();

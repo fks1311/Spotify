@@ -1,6 +1,7 @@
 import axios from "axios";
 import { SPOTIFY_BASE_URL } from "../configs/commonConfig";
 import { IGetNewReleasesResponse } from "../models/album";
+import { GetAlbumTracks } from "../models/track";
 
 /** Spotify API : 앨범 발매 목록을 가져옵니다. */
 export const getNewReleases = async (clientCredentialToken: string): Promise<IGetNewReleasesResponse> => {
@@ -22,7 +23,8 @@ interface getAlbumTracksProps {
   limit?: number;
   offset: number;
 }
-export const getAlbumTracks = async (params: getAlbumTracksProps) => {
+/** 앨범 트랙 정보를 가져옵니다. */
+export const getAlbumTracks = async (params: getAlbumTracksProps): Promise<GetAlbumTracks> => {
   try {
     const { token, id, limit, offset } = params;
     const response = await axios.get(`https://api.spotify.com/v1/albums/${id}/tracks`, {

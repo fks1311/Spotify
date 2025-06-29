@@ -15,3 +15,13 @@ export interface Artist {
   type?: "artist";
   uri?: string;
 }
+
+// 여기서부터
+export interface SimplifiedArtistObject {
+  external_urls?: ExternalURLs;
+  href?: string;
+  id?: string;
+  name?: string;
+  type?: "artist";
+  uri?: string;
+}

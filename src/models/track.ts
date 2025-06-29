@@ -1,6 +1,7 @@
 import { SimplifiedAlbumObject } from "./album";
-import { Artist } from "./artist";
-import { ExternalURLs, Image, Restrictions } from "./commonType";
+import { ApiResponse } from "./apiResponse";
+import { Artist, SimplifiedArtistObject } from "./artist";
+import { External_ids, ExternalURLs, Image, Restrictions } from "./commonType";
 
 export interface ITrack {
   album?: SimplifiedAlbumObject;
@@ -108,4 +109,58 @@ export interface SimplifiedAudiobookObject {
   type: "audiobook";
   uri: string;
   total_chapters: number;
+}
+
+// 여기서부터
+export type GetAlbumTracks = ApiResponse<SimplifiedTrackObject>;
+
+export interface SimplifiedTrackObject {
+  artists?: SimplifiedArtistObject[];
+  available_markets?: string[];
+  disc_number?: number;
+  duration_ms?: number;
+  explicit?: boolean;
+  external_urls?: ExternalURLs;
+  href?: string;
+  id?: string;
+  is_playable?: boolean;
+  linked_from?: {
+    external_urls?: ExternalURLs;
+    href?: string;
+    id?: string;
+    type?: "track";
+    uri?: string;
+  };
+  restrictions?: Restrictions;
+  name?: string;
+  track_number?: number;
+  type?: "track";
+  uri?: string;
+  is_local?: boolean;
+}
+
+export interface TrackObject {
+  tracks: {
+    album?: SimplifiedAlbumObject;
+    artists?: Artist[];
+    available_markets?: string[];
+    disc_number?: number;
+    duration_ms?: number;
+    explicit?: boolean;
+    external_ids?: External_ids;
+    external_urls?: ExternalURLs;
+    href?: string;
+    id?: string;
+    is_playable?: boolean;
+    linked_from?: {};
+    restrictions?: {
+      reason?: string;
+    };
+    name?: string;
+    popularity?: number;
+    track_number?: number;
+    type?: "track";
+    uri?: string;
+    is_local?: boolean;
+  };
 }
