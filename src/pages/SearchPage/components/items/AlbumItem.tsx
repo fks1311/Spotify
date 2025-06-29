@@ -10,16 +10,18 @@ import {
   Overlay,
   SecondayText,
 } from "../../../../style/SearchStyle";
+import { useNavigate } from "react-router";
 
 interface AlbumItemProps {
   albums: SimplifiedAlbumObject[];
 }
 const AlbumItem = ({ albums }: AlbumItemProps) => {
+  const navigate = useNavigate();
   return (
     <ItemLayout title="앨범" width="100%">
       <Layout>
-        {albums.map((album) => (
-          <Content key={album.id} onClick={() => alert("진행 예정입니다")}>
+        {albums.map((album, idx) => (
+          <Content key={album.id} onClick={() => navigate(`/explore/album/${album?.id}`)}>
             <HoverLayout>
               <ItemImg src={album.images[0].url} />
               <Overlay className="overlay">

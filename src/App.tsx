@@ -12,6 +12,7 @@ const PlaylistDetailPage = React.lazy(() => import("./pages/PlaylistPage/Playlis
 const PlaylistPage = React.lazy(() => import("./pages/PlaylistPage/PlaylistPage"));
 const TrackPage = React.lazy(() => import("./pages/ExplorePage/track/Track"));
 const ArtistPage = React.lazy(() => import("./pages/ExplorePage/artist/Artist"));
+const AlbumPage = React.lazy(() => import("./pages/ExplorePage/album/Album"));
 
 function App() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -42,6 +43,7 @@ function App() {
             <Route path="playlist/:id" element={<PlaylistDetailPage />} />
             <Route path="/explore/track/:id" element={<TrackPage />} />
             <Route path="/explore/artist/:id" element={<ArtistPage />} />
+            <Route path="/explore/album/:id" element={<AlbumPage />} />
           </Route>
         </Routes>
       </Suspense>
