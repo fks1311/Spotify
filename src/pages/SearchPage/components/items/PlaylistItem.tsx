@@ -10,16 +10,18 @@ import {
 } from "../../../../style/SearchStyle";
 import ItemLayout from "../../../../layout/searchpage/ItemLayout";
 import { SimplifiedPlaylistObject } from "../../../../models/playlist";
+import { useNavigate } from "react-router";
 
 interface PlaylistItemProps {
   playlists: SimplifiedPlaylistObject[];
 }
 const PlaylistItem = ({ playlists }: PlaylistItemProps) => {
+  const navigate = useNavigate();
   return (
     <ItemLayout title="플레이리스트" width="100%">
       <Layout>
         {playlists.map((playlist) => (
-          <Content key={playlist.id} onClick={() => alert("진행 예정입니다")}>
+          <Content key={playlist.id} onClick={() => navigate(`/explore/playlist/${playlist.id}`)}>
             <HoverLayout>
               <ItemImg src={playlist?.images?.[0].url} />
               <Overlay className="overlay">

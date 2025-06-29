@@ -30,6 +30,7 @@ export const getCurrentUserPlaylists = async ({
   }
 };
 
+/** 사용자가 소유한 단일 재생목록을 가져옵니다. */
 export const getPlaylist = async (params: GetPlaylistRequest): Promise<PlaylistResponse> => {
   try {
     const response = await api.get(`/playlists/${params.playlist_id}`, {
@@ -41,6 +42,7 @@ export const getPlaylist = async (params: GetPlaylistRequest): Promise<PlaylistR
   }
 };
 
+/** 사용자가 소유한 재생 목록 항목에 대한 세부 정보를 가져옵니다. */
 export const getPlaylistItems = async ({
   playlist_id,
   limit,
@@ -56,6 +58,7 @@ export const getPlaylistItems = async ({
   }
 };
 
+/** 재생목록을 만듭니다. */
 export const createPlaylist = async (user_id: string, params: CreatePlaylistRequest): Promise<PlaylistResponse> => {
   try {
     const { name, playlistPublic, collaborative, description } = params;
@@ -71,6 +74,7 @@ export const createPlaylist = async (user_id: string, params: CreatePlaylistRequ
   }
 };
 
+/** 재생 목록에 항목 추가 */
 export const addItemToPlaylist = async (params: AddItemToPlaylistRequest): Promise<BasePlaylistResponse> => {
   const { position, uris } = params;
   try {
@@ -84,6 +88,7 @@ export const addItemToPlaylist = async (params: AddItemToPlaylistRequest): Promi
   }
 };
 
+/** 재생 목록 항목 제거 */
 export const removePlaylistItems = async (params: RemovePlaylistItemsRequest): Promise<BasePlaylistResponse> => {
   try {
     const { tracks, snapshot_id } = params;
@@ -99,6 +104,7 @@ export const removePlaylistItems = async (params: RemovePlaylistItemsRequest): P
   }
 };
 
+/** 플레이리스트 팔로우 취소 => 재생 목록 삭제 */
 export const UnfollowPlaylist = async (params: UnfollowPlaylistRequest) => {
   try {
     const response = await api.delete(`/playlists/${params.id}/followers`, {
@@ -112,6 +118,7 @@ export const UnfollowPlaylist = async (params: UnfollowPlaylistRequest) => {
   }
 };
 
+/** 재생 목록의 세부 정보 변경 */
 export const changePlaylistDetail = async (params: ChangePlaylistDetailRequest) => {
   try {
     const response = await api.put(`/playlists/${params.playlist_id}`, {
@@ -123,6 +130,7 @@ export const changePlaylistDetail = async (params: ChangePlaylistDetailRequest) 
   }
 };
 
+/** 단일 트랙 가져오기 */
 export const getTracks = async (params: { token: string; id: string }) => {
   try {
     const { token, id } = params;
@@ -130,6 +138,39 @@ export const getTracks = async (params: { token: string; id: string }) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/** 다른 사람의 공개된 단일 재생목록 */
+export const getPublicPlaylist = async (params: GetPlaylistRequest & { token: string }): Promise<PlaylistResponse> => {
+  try {
+    const response = await axios.get(`https://api.spotify.com/v1/playlists/${params.playlist_id}`, {
+      headers: {
+        Authorization: `Bearer ${params.token}`,
+      },
+      params,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/** 다른 사람의 공개된 플레이리스트 가져오기 */
+export const getPublicUserPlaylistsItems = async (
+  params: GetPlaylistItemsRequest & { token: string }
+): Promise<GetPlaylistItemsResponse> => {
+  try {
+    const { playlist_id, limit, offset, token } = params;
+    const response = await axios.get(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: { limit, offset },
     });
     return response.data;
   } catch (error) {

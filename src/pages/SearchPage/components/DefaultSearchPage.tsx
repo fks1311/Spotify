@@ -20,7 +20,7 @@ const DefaultSearchPage = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  const allCategories = data?.pages.flatMap((page) => page.categories.items);
+  const allCategories = data?.pages?.flatMap((page) => page?.categories?.items ?? []);
 
   return (
     <Container>
